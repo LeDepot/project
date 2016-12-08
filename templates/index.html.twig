@@ -1,0 +1,30 @@
+{% extends 'template.html.twig' %}
+
+{% block page %}
+    <section class="head clearfix">
+        <div class="BGcolor">
+            <div class="text-content">
+                <p>
+                    Bienvenue sur le site de réservation de matériel audiovisuel du département MMI de Montbéliard.
+                </p>
+                <p>
+                    Vous trouverez ici tout ce dont vous avez besoin pour réaliser vos vidéos !
+                </p>
+                <a href="index.php?page=about" class="btn CGU" data-content="Conditions d'utilisation">Conditions d'utilisation</a>
+            </div>
+        </div>
+    </section>
+    <section class="main-content">
+        <h2>Catégories</h2>
+        <nav class="categories">
+            <ul>
+                <li class="nav-Photo"><a href="index.php?page=photo" data-content="Photos">Photo</a></li>
+                <li class="nav-Video"><a href="index.php?page=video" data-content="Vidéos">Vidéo</a></li>
+                <li class="nav-Son"><a href="index.php?page=son" data-content="Son">Son</a></li>
+                <li class="nav-Light"><a href="index.php?page=eclairage" data-content="Éclairages">Éclairage</a></li>
+                <li class="nav-Acc"><a href="index.php?page=accessoires" data-content="Accessoires">Accessoires</a></li>
+                <li class="nav-Room"><a href="index.php?page=salles" data-content="Salles">Salles</a></li>
+            </ul>
+        </nav>
+    </section>
+{% endblock %}

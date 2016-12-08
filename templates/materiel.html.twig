@@ -1,0 +1,47 @@
+{% extends 'template.html.twig' %}
+
+{% block page %}
+    <div class="pageMateriel">
+        <a href="index.html" class="btn retourListe large" data-content="Revenir à la liste du matériel">Revenir à la liste du matériel</a>
+        <section class="materiel">
+            <section class="sup">
+                <div class="right">
+                    <h2>Canon EOS 5D</h2>
+                    <a href="#" class="btn green" id="resa" data-content="Réserver">Réserver</a>
+                    <a target="_blank" href="src/pdf/CanonEOS5d.pdf" class="btn white" id="manuel" data-content="Manuel d'utilisation">Manuel d'utilisation</a>
+                </div>
+                <div class="left">
+                    <div class="carousel" id="wrapper">
+                        <div class="listeImg" id="carousel">
+                            <img src="src/img/lumix.JPG"><!--
+                            --><img src="src/img/lumix2.JPG">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <section class="bas">
+                <span class="caution">Caution : 300€</span>
+                <a href="about.html" class="btn CGU" data-content="Conditions d'utilisation">Conditions d'utilisation</a>
+                <p class="desc">
+                    L'EOS 5D Mark III est un reflex numérique plein format de 22,3 MP doté d'un système autofocus à 61
+                    collimateurs et capable d'effectuer des prises de vue en continu à 6 im./s. Enregistrez des vidéos
+                    Full HD de grande qualité, avec un contrôle manuel sur tous les réglages, de la fréquence d'images aux
+                    paramètres audio.
+                </p>
+                <ul class="caracteristiques">
+                    <li>Capteur full frame de 22,3 millions de pixels</li>
+                    <li>61 collimateurs AF</li>
+                    <li>Prise de vue en continu à 6 im./s</li>
+                    <li>Sensibilité de 100 à 25.600 ISO. Possibilité d'extension jusqu'à 102.400 ISO</li>
+                    <li>Vidéos Full HD avec contrôle manuel</li>
+                    <li>Sortie HDMI sans compression en Full HD 8 bits 4.2.2</li>
+                    <li>Processeur DIGIC 5+ 14 bits</li>
+                    <li>Boîtier résistant à la poussière et à l'humidité.</li>
+                    <li>Écran 8,11 cm (3,2 pouces), 1.040.000 points</li>
+                    <li>Mode HDR</li>
+                </ul>
+            </section>
+        </section>
+    </div>
+{% endblock %}

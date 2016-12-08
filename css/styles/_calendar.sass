@@ -1,0 +1,83 @@
+.calendar
+    width: 80vw
+    height: calc(80vh - #{$header-h})
+    position: absolute
+    top: 50%
+    left: 50%
+    +prefixes(transform, translate(-50%, -50%))
+
+    @media (max-width: $xs-max)
+        position: static
+        transform: none
+        margin: 50px auto
+        margin-bottom: 110px
+
+    .c-grid
+        width: 70%
+
+        @media (max-width: $xs-max)
+            width: 100%
+
+        .c-grid-title
+            background:
+                color: $col1
+            +prefixes(transition, all ease 400ms)
+
+            &.c-nav-btn-over
+                background:
+                    color: lighten($col1, 15%) !important
+
+        .c-week-day
+            background:
+                color: $col1
+
+        .c-day-previous-month,
+        .c-day-next-month
+            background:
+                color: lighten($gray, 50%)
+
+        .c-day
+            background:
+                color: $white
+
+        .c-event
+            background:
+                color: $col4
+
+        .c-event-over
+            color: $white
+
+        .c-today
+            background:
+                color: rgba($col1, .6)
+
+    .c-event-grid
+        width: 29%
+        box-shadow: 0 0 0 #000
+
+        @media (max-width: $xs-max)
+            width: 100%
+            height: auto
+
+        .c-event-title
+            background:
+                color: $col1
+
+        .c-event-list
+            background:
+                color: $white
+
+        .c-event-body
+            background:
+                color: $white
+
+            @media (max-width: $xs-max)
+                height: auto
+
+        .c-event-item
+            padding: 30px
+
+        .c-event-over
+            background:
+                color: $col2
+            color: $white

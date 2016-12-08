@@ -1,0 +1,189 @@
+header
+    height: $header-h
+    width: 100%
+    background-color: $col1
+    position: fixed
+    vertical-align: top
+    top: 0
+    left: 0
+    z-index: 500
+
+    .container
+        position: relative
+
+    h1
+        display: inline-block
+        text-indent: -9999px
+        background:
+            image: url(../src/img/mmi-stroke-logo-02.svg)
+            size: contain
+            repeat: no-repeat
+            position: center center
+        width: $header-h
+        height: $header-h
+        margin-left: 15px
+
+header .user
+    position: absolute
+    top: 0
+    right: 0
+
+    .sub-nav-elm
+        display: inline-block
+        height: $header-h
+        vertical-align: top
+
+        .search-input
+            background:
+                color: transparent
+            border: none
+            border-bottom: 1px solid $white
+            color: white
+            display: inline-block
+            height: $header-h / 2
+            font-style: italic
+            font-size: $header-h / 2
+            +prefixes(transform, scaleX(0))
+            +prefixes(transform-origin, right)
+            +prefixes(transition, all ease 400ms)
+
+            &:focus
+                +prefixes(transform, scaleX(1))
+
+            &:focus
+                outline: none
+
+            @media (max-width: $sm-max)
+                position: absolute
+                right: 0
+                top: 60px
+                background: darken($col1, 5%)
+
+        .search-icon
+            height: $header-h
+            width: $header-h
+            color: $white
+            display: inline-block
+            text-align: center
+            line-height: $header-h
+            +prefixes(transition, all ease 400ms)
+
+            &:hover
+                color: $col1
+                background:
+                    color: $col4
+                cursor: pointer
+
+        &.user-name
+            padding: 0 15px
+            line-height: $header-h
+            background:
+                color: $col2
+            color: $white
+
+        &.cart
+            width: $header-h
+            font-size: $header-h / 2
+            text-align: center
+            line-height: $header-h
+            background:
+                color: transparent
+            border: none
+            color: $white
+            +prefixes(transition, all ease 400ms)
+
+            &:focus
+                outline: none
+
+            &:hover
+                cursor: pointer
+                background:
+                    color: $col4
+                color: $col1
+
+header nav
+    display: inline-block
+    height: 100%
+    vertical-align: top
+
+    @media (max-width: $sm-max)
+        width: 70%
+        margin-top: $header-h
+
+        ul
+            +prefixes(transform, scale(0, 1))
+            +prefixes(transition, all ease 400ms)
+            +prefixes(transform-origin, left)
+
+            &.active
+                +prefixes(transform, scale(1, 1))
+
+        .menu
+            top: -$header-h
+
+        ul
+            li
+                display: block
+
+                a
+                    background: darken($col1, 5%)
+                    border-bottom: 1px solid #273f5d
+    ul
+        list-style: none
+        height: 100%
+        vertical-align: top
+        line-height: $header-h
+
+    li
+        display: inline-block
+        height: 100%
+        a
+            color: $white
+            text-decoration: none
+            display: block
+            height: 100%
+            padding: 0 25px
+            position: relative
+
+            &:after
+                content: ''
+                display: block
+                height: 0
+                width: 100%
+                background:
+                    color: $col2
+                position: absolute
+                bottom: 0
+                left: 0
+                +prefixes(transition, all ease 250ms)
+
+            &.current-page
+                &:after
+                    height: 5px
+
+            &:hover
+                &:after
+                    height: 5px
+
+// menu responsive
+header
+    nav
+        position: relative
+
+        .menu
+            position: absolute
+            height: $header-h
+            padding-top: 8px
+            padding-left: 15px
+
+            .bar
+                display: block
+                height: 5px
+                width: 40px
+                margin: 7px 0
+                background:
+                    color: $white
+
+            @media (min-width: $md-min)
+                display: none
+

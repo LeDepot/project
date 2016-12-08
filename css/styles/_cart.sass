@@ -1,0 +1,49 @@
+.panier
+    position: fixed
+    vertical-align: top
+    top: 50%
+    left: 50%
+    +prefixes(transform, translate(-50%, -50%) scale(0))
+    +prefixes(transition, all ease 400ms)
+    +prefixes(transform-origin, center)
+    z-index: 100
+    background:
+        color: darken($col3, 5%)
+    width: 70%
+
+    &.open
+        +prefixes(transform, translate(-50%, -50%) scale(1))
+
+    .container
+        position: relative
+        padding-top: 50px
+
+        .cross
+            position: absolute
+            top: 0
+            right: 0
+            color: $col1
+            font-size: 30px
+            padding: 5px 15px
+            +prefixes(transition, all ease 400ms)
+
+            &:hover
+                color: $col2
+                cursor: pointer
+
+        .title
+            margin: 0 150px
+            border-bottom: 3px dashed $col1
+
+            @media (max-width: $sm-max)
+                margin: 0
+
+            h2
+                margin: 0
+                padding-bottom: 20px
+
+        .content
+            padding: 50px 170px
+
+            @media (max-width: $sm-max)
+                padding: 50px 30px

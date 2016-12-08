@@ -1,0 +1,54 @@
+footer
+    position: absolute
+    vertical-align: top
+    left: 0
+    bottom: 0
+    height: $header-h
+    background:
+        color: darken($col3, 5%)
+    width: 100%
+    line-height: $header-h
+    text-align: right
+    padding-right: 30px
+
+    .container
+        position: relative
+        height: 100%
+        width: 100%
+
+        .contacts
+            position: absolute
+            vertical-align: top
+            top: 0
+            left: 50px
+
+            a
+                color: $col2
+                text-decoration: none
+                display: inline-block
+                height: 100%
+                padding: 0 15px
+
+                &:hover
+                    background:
+                        color: darken($col3, 10%)
+
+    @media (max-width: $sm-max)
+        .desktop
+            display: none
+
+        .legacy
+            display: none
+
+        .contacts
+            padding-left: 15px
+            left: 0 !important
+            width: 100%
+            text-align: center
+
+        .container
+            text-align: right
+
+    @media (max-width: $md-max)
+        .lg
+            display: none

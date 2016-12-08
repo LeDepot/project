@@ -1,0 +1,131 @@
+/*
+/* Remise à zéro des marges
+/*
+
+*
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+
+/*
+/* Définition de la racine pour les dimensions en rem
+/*
+
+html
+    font-size: 62.5%
+
+    body
+        font-size: $content-f-s
+        font-family: $content-font
+        min-height: 100vh
+        position: relative
+        background:
+            color: $col3
+        padding-bottom: 150px
+
+    main
+        padding-top: $header-h
+
+/*
+/* Styles des titres
+/*
+
+h2
+    text-align: center
+    font-family: $title-font
+    font-size: $h2-f-s
+    color: $col1
+    margin: 50px 0
+
+    &.head-title
+        margin: 0
+        padding: 70px 0
+        color: white
+/*
+/* Styles des liens
+/*
+
+.btn
+    display: block
+    text-align: center
+    background:
+        color: $col2
+    color: $white
+    width: 270px
+    height: 55px
+    margin: 20px auto
+    text-decoration: none
+    position: relative
+    overflow: hidden
+    text-indent: -9999px
+    padding: 0
+
+    &.large
+        width: 300px
+
+    &.white
+        background:
+            color: $white
+        color: $col1
+
+        &:before
+            background:
+                color: $col4
+
+    &.green
+        border: 1px solid $white
+
+    &:after
+        content: attr(data-content)
+        display: block
+        position: absolute
+        vertical-align: top
+        top: 0
+        left: 0
+        z-index: 3
+        width: 100%
+        height: 100%
+        text-indent: 0
+        line-height: 55px
+
+    &:before
+        content: ''
+        display: block
+        height: 100%
+        width: 100%
+        +prefixes(transition, all ease 400ms)
+        position: absolute
+        top: 0
+        left: -100%
+        vertical-align: top
+        background:
+            color: $col1
+        z-index: 1
+
+    &:hover
+        &:before
+            left: 0
+
+// Liens disabled
+
+.btn
+    &.disabled
+        background:
+            color: $gray
+        text-indent: 0
+        line-height: 55px
+
+        &:before, &:after
+            display: none
+
+        &:hover
+            cursor: default
+
+// Hidden mobile
+@media (max-width: $sm-max)
+    .hidden-mobile
+        display: none !important
+
+@media (min-width: $md-min)
+    .hidden-desktop
+        display: none !important

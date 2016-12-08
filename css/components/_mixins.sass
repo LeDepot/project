@@ -1,0 +1,13 @@
+@charset "UTF-8"
+
+// Préfixe les propriétés CSS qui en ont besoin
+// $property[String] : Nom de la propriété
+// $value[String] : Valeur de la propriété
+
+@mixin prefixes($property, $value)
+  #{$property}: $value
+  -o-#{$property}: $value
+  -ms-#{$property}: $value
+  -webkit-#{$property}: $value
+  -moz-#{$property}: $value
+
