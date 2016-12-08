@@ -41,7 +41,3 @@ __Push :__ _(pousser)_
 __Pull :__ _(tirer_) 
 > Récupérer les commits des autres membres de l'équipe depuis le Repository  
 
-
-__SSH :__
-> Protocole sécurisé permettant de transmettre des commandes ou des fichiers  
-
