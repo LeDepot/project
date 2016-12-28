@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Dao.php';
-require_once ("classes/class.categorie.php");
+require_once ("classes/class.Categorie.php");
 
 class DaoCategorie extends Dao {
 
@@ -15,7 +15,7 @@ class DaoCategorie extends Dao {
 
         $this->bean->setId($donnees['ID_CATEGORIE']);
         $this->bean->setNom($donnees['NOM_CATEGORIE']);
-        $this->bean->setLesMateriels($donnees['LESMATERIELS_CATEGORIE']);
+        //$this->bean->setLesMateriels($donnees['LESMATERIELS_CATEGORIE']);
     }
 
     public function getListe() {

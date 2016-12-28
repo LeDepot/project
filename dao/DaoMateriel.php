@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Dao.php';
-require_once ("classes/class.materiel.php");
+require_once ("classes/class.Materiel.php");
 
 class DaoMateriel extends Dao {
 
@@ -20,7 +20,7 @@ class DaoMateriel extends Dao {
         $this->bean->setImage($donnees['IMAGE_MATERIEL']);
         $this->bean->setNombre($donnees['NOMBRE_MATERIEL']);
         $this->bean->setStatut($donnees['STATUT_MATERIEL']);
-        $this->bean->setLesReservations($donnees['LESRESERVATIONS_MATERIEL']);
+      //  $this->bean->setLesReservations($donnees['LESRESERVATIONS_MATERIEL']);
     }
 
     public function getListe() {
