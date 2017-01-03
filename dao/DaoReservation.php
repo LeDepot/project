@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Dao.php';
-require_once ("classes/class.reservation.php");
+require_once ("classes/class.Reservation.php");
 
 class DaoReservation extends Dao {
 
@@ -17,7 +17,7 @@ class DaoReservation extends Dao {
         $this->bean->setDateDebut($donnees['DATEDEBUT_RESERVATION']);
         $this->bean->setDateFin($donnees['DATEFIN_RESERVATION']);
         $this->bean->setValide($donnees['VALIDE_RESERVATION']);
-        $this->bean->setLesPersonnes($donnees['LESPERSONNES_RESERVATION']);
+        //$this->bean->setLesPersonnes($donnees['LESPERSONNES_RESERVATION']);
     }
 
     public function getListe() {
