@@ -5,42 +5,45 @@ require_once ("classes/class.Materiel.php");
 
 class DaoMateriel extends Dao {
 
-    public function DaoMateriel() {
-        parent::__construct();
-        $this->bean = new Materiel();
+    public function findById($id){
+        $stmt = $this->pdo->query("SELECT * FROM materiel WHERE id='$id'");
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Materiel($row);
     }
 
-    public function find($id) {
-        $donnees = $this->findById("materiel", "ID_MATERIEL", $id);
-
-        $this->bean->setId($donnees['ID_MATERIEL']);
-        $this->bean->setNom($donnees['NOM_MATERIEL']);
-        $this->bean->setDesc($donnees['DESC_MATERIEL']);
-        $this->bean->setDesc($donnees['DESC_MATERIEL']);
-        $this->bean->setImage($donnees['IMAGE_MATERIEL']);
-        $this->bean->setNombre($donnees['NOMBRE_MATERIEL']);
-        $this->bean->setStatut($donnees['STATUT_MATERIEL']);
-      //  $this->bean->setLesReservations($donnees['LESRESERVATIONS_MATERIEL']);
+    public function getList(){
+        $res = array();
+        $stmt = $this->pdo->query("SELECT * FROM materiel ORDER BY nom");
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
+            $res[] = new Materiel($row);
+        return $res;
     }
 
-    public function getListe() {
-        $sql = "SELECT *
-                FROM materiel 
-                ORDER BY NOM_MATERIEL";
-        $requete = $this->pdo->prepare($sql);
-        $liste = array();
-        if ($requete->execute()) {
-            while ($donnees = $requete->fetch()) {
-                $materiel = new Materiel(
-                    $donnees['ID_MATERIEL'], $donnees['NOM_MATERIEL'], $donnees['DESC_MATERIEL'], $donnees['IMAGE_MATERIEL'], $donnees['NOMBRE_MATERIEL'], $donnees['STATUT_MATERIEL'], $donnees['LESRESERVATIONS_MATERIEL']
-                );
-                $liste[] = $materiel;
-            }
-        }
-
-        return $liste;
+    public function getListByCat($idCat){
+        $res = array();
+        $stmt = $this->pdo->query("SELECT * FROM materiel WHERE id_cat='$idCat' ORDER BY nom");
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
+            $res[] = new Materiel($row);
+        return $res;
     }
 
+    public function delete($id){
+        $stmt = $this->pdo->prepare("DELETE FROM materiel WHERE id=?");
+        $res = $stmt->execute(array($id));
+        return $res;
+    }
+
+    public function insert($obj) {
+        $stmt =  $this->pdo->prepare("INSERT INTO materiel (nom, description, image, nombre, quantite, statut, pdf, id_cat) VALUES (:nom, :description, :image, :nombre, :quantite, :statut, :pdf, :id_cat)");
+        $res = $stmt->execute($obj->getFields());
+        return $res;
+    }
+
+    public function update($obj) {
+        $stmt = $this->pdo->prepare("UPDATE materiel SET NOM=:NOM, DESCRIPTION=:DESCRIPTION, IMAGE=:IMAGE, NOMBRE=:NOMBRE, QUANTITE=:QUANTITE, STATUT=:STATUT, PDF=:PDF, ID_CAT=:ID_CAT WHERE ID=:ID");
+        $res = $stmt->execute($obj->getFields());
+        return $res;
+    }
 
 }
 

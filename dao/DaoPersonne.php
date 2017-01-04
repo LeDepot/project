@@ -5,48 +5,40 @@ require_once ("classes/class.Personne.php");
 
 class DaoPersonne extends Dao {
 
-    public function DaoPersonne() {
-        parent::__construct();
-        $this->bean = new Personne();
+    function findById($id){
+        $stmt = $this->pdo->query("SELECT * FROM personne WHERE id='$id'");
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Personne($row);
     }
 
-    public function find($id) {
-        $donnees = $this->findById("personne", "ID_PERSONNE", $id);
-
-        $this->bean->setId($donnees['ID_PERSONNE']);
-        $this->bean->setNom($donnees['NOM_PERSONNE']);
-        $this->bean->setPrenom($donnees['PRENOM_PERSONNE']);
-        $this->bean->setLogin($donnees['LOGIN_PERSONNE']);
-        $this->bean->setMdp($donnees['MDP_PERSONNE']);
-        $this->bean->setBlacklist($donnees['BLACKLIST_PERSONNE']);
-        $this->bean->setPromo($donnees['PROMO_PERSONNE']);
-        $this->bean->setGroupe($donnees['GROUPE_PERSONNE']);
-        $this->bean->setMail($donnees['MAIL_PERSONNE']);
-        $this->bean->setAdmin($donnees['ADMIN_PERSONNE']);
-        $this->bean->setModerateur($donnees['MODERATEUR_PERSONNE']);
-        //$this->bean->setLesReservations($donnees['LESRESERVATIONS_PERSONNE']);
-
+    function delete($id)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM personne WHERE id=?");
+        $res = $stmt->execute(array($id));
+        return $res;
     }
 
-    public function getListe() {
-        $sql = "SELECT *
-                FROM personne
-                ORDER BY NOM_PERSONNE PRENOM_PERSONNE";
-        $requete = $this->pdo->prepare($sql);
-        $liste = array();
-        if ($requete->execute()) {
-            while ($donnees = $requete->fetch()) {
-                $personne = new Personne(
-                    $donnees['ID_PERSONNE'], $donnees['NOM_PERSONNE'], $donnees['PRENOM_PERSONNE'], $donnees['LOGIN_PERSONNE'], $donnees['BLACKLIST_PERSONNE'], $donnees['PROMO_PERSONNE'], $donnees['GROUPE_PERSONNE'], $donnees['MAIL_PERSONNE'], $donnees['ADMIN_PERSONNE'], $donnees['MODERETEUR_PERSONNE'], $donnees['LESRESERVATIONS_PERSONNE']
-                );
-                $liste[] = $personne;
-            }
-        }
-
-        return $liste;
+    function getList() {
+        $res = array();
+        $stmt = $this->pdo->query("SELECT * FROM personne ORDER BY nom");
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
+            $res[] = new Personne($row);
+        return $res;
     }
 
+    function insert($obj)
+    {
+        $stmt =  $this->pdo->prepare("INSERT INTO personne (nom, prenom, login, mdp, mail, admin, moderateur) VALUES (:nom, :prenom, :login, :mdp, :mail, :admin, :moderateur)");
+        $res = $stmt->execute($obj->getFields());
+        return $res;
+    }
 
+    function update($obj)
+    {
+        $stmt = $this->pdo->prepare("UPDATE personne SET NOM=:NOM, PRENOM=:PRENOM, LOGIN=:LOGIN, MDP=:MDP, MAIL=:MAIL, ADMIN=:ADMIN, MODERATEUR=:MODERATEUR WHERE ID=:ID");
+        $res = $stmt->execute($obj->getFields());
+        return $res;
+    }
 }
 
 ?>

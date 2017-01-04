@@ -1,9 +1,9 @@
 <?php
 
-class Dao{
+abstract class Dao{
 
     public $bean=null;
-    public $pdo=null;
+    public $pdo=null; // Objet pdo pour l'accès à la table
 
     public function Dao() {
         // Instanciation pdo
@@ -17,21 +17,19 @@ class Dao{
         );
     }
 
-    public function findById($table=null, $colonne = null, $valeur=0){
-        $sql = "SELECT * FROM ".$table." WHERE ".$colonne." = ".$valeur;
-        $requete = $this->pdo->prepare($sql);
-        if($requete->execute()){
-            if($donnees = $requete->fetch()){
-                return $donnees;
-            }
-        }
-    }
+    // Récupération d'un objet dont on donne l'identifiant
+    abstract function findById($id);
 
-    public function deleteById($table=null, $colonne = null, $valeur=0){
-        $sql = "DELETE FROM ".$table." WHERE ".$colonne." = ".$valeur;
-        $requete = $this->pdo->prepare($sql);
-        $requete->execute();
-    }
+    // Suppression d'un objet dont on donne l'identifiant
+    abstract function delete($id);
 
+    // Récupération de tous les objets dans une table
+    abstract function getList();
+
+    // Ajout de l'objet $obj dans la base
+    abstract function insert($obj);
+
+    // Mise à jour de l'objet $obj dans la base
+    abstract function update($obj);
 
 }

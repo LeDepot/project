@@ -5,39 +5,42 @@ require_once ("classes/class.Reservation.php");
 
 class DaoReservation extends Dao {
 
-    public function DaoReservation() {
-        parent::__construct();
-        $this->bean = new Reservation();
+    function findById($id)
+    {
+        $stmt = $this->pdo->query("SELECT * FROM reservation WHERE id='$id'");
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Reservation($row);
     }
 
-    public function find($id) {
-        $donnees = $this->findById("reservation", "ID_RESERVATION", $id);
-
-        $this->bean->setId($donnees['ID_RESERVATION']);
-        $this->bean->setDateDebut($donnees['DATEDEBUT_RESERVATION']);
-        $this->bean->setDateFin($donnees['DATEFIN_RESERVATION']);
-        $this->bean->setValide($donnees['VALIDE_RESERVATION']);
-        //$this->bean->setLesPersonnes($donnees['LESPERSONNES_RESERVATION']);
+    function delete($id)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM reservation WHERE id=?");
+        $res = $stmt->execute(array($id));
+        return $res;
     }
 
-    public function getListe() {
-        $sql = "SELECT *
-                FROM reservation 
-                ORDER BY DATEDEBUT_RESERVATION DATEFIN_RESERVATION";
-        $requete = $this->pdo->prepare($sql);
-        $liste = array();
-        if ($requete->execute()) {
-            while ($donnees = $requete->fetch()) {
-                $reservation = new Reservation(
-                    $donnees['ID_RESERVATION'], $donnees['DATEDEBUT_RESERVATION'], $donnees['DATEFIN_RESERVATION'], $donnees['VALIDE_RESERVATION'], $donnees['LESPERSONNES_RESERVATION']
-                );
-                $liste[] = $reservation;
-            }
-        }
-
-        return $liste;
+    function getList()
+    {
+        $res = array();
+        $stmt = $this->pdo->query("SELECT * FROM reservation ORDER BY id");
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
+            $res[] = new Reservation($row);
+        return $res;
     }
 
+    function insert($obj)
+    {
+        $stmt =  $this->pdo->prepare("INSERT INTO reservation (datedebut, datefin, valide) VALUES (:datedebut, :datefin, :valide)");
+        $res = $stmt->execute($obj->getFields());
+        return $res;
+    }
+
+    function update($obj)
+    {
+        $stmt = $this->pdo->prepare("UPDATE reservation SET DATEDEBUT=:DATEDEBUT, DATEFIN=:DATEFIN, VALIDE=:VALIDE WHERE ID=:ID");
+        $res = $stmt->execute($obj->getFields());
+        return $res;
+    }
 
 }
 
