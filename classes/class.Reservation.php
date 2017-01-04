@@ -1,11 +1,13 @@
 <?php
 
+require_once('class.Materiel.php');
+
 class Reservation{
 
     private $id          = 0;
     private $date_debut  = null;
     private $date_fin    = null;
-    private $valide      = null;
+    private $valide      = false;
 
 
     public function Reservation($id=0, $date_debut=null, $date_fin=null, $valide=null){

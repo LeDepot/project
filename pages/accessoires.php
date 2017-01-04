@@ -1,7 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jmasg
- * Date: 03/01/2017
- * Time: 21:16
- */
+
+require_once('dao/DaoMateriel.php');
+require_once 'dao/DaoCategorie.php';
+
+$daoMateriel = new DaoMateriel();
+$liste = $daoMateriel->getListe(6);
+
+for($i=0;$i<count($liste);$i++){
+    $daoMateriel = new DaoMateriel();
+    $daoMateriel->find($liste[$i]->getId());
+
+    $listeMateriel[$i] = $daoMateriel->bean;
+}
+//   var_dump($listeMateriel);die();
+$param = array('listeMateriel' => $liste);

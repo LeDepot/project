@@ -8,70 +8,15 @@
     </section>
     <section class="main-content liste-materiel">
         <div class="liste-elm">
+            {% for materiel in listeMateriel %}
             <div class="elm">
                 <div class="img-container">
-                    <img src="src/img/lumix.JPG" alt="" class="elm-pic">
+                    <img src="src/img/{{ materiel.IMAGE }}" alt="" class="elm-pic">
                 </div>
-                <span class="elm-name">Canon EOS 5D</span>
+                <span class="elm-name">{{ materiel.NOM }}</span>
                 <a href="index.php?page=materiel" class="btn btn-materiel" data-content="Réserver">Réserver</a>
             </div>
-
-            <div class="elm">
-                <div class="img-container">
-                    <img src="src/img/lumix.JPG" alt="" class="elm-pic">
-                </div>
-                <span class="elm-name">Canon EOS 5D</span>
-                <a href="index.php?page=materiel" class="btn btn-materiel" data-content="Réserver">Réserver</a>
-            </div>
-
-            <div class="elm">
-                <div class="img-container">
-                    <img src="src/img/lumix.JPG" alt="" class="elm-pic">
-                </div>
-                <span class="elm-name">Canon EOS 5D</span>
-                <a href="index.php?page=materiel" class="btn btn-materiel disabled" data-content="Réserver">Réserver</a>
-            </div>
-
-            <div class="elm">
-                <div class="img-container">
-                    <img src="src/img/lumix.JPG" alt="" class="elm-pic">
-                </div>
-                <span class="elm-name">Canon EOS 5D</span>
-                <a href="index.php?page=materiel" class="btn btn-materiel" data-content="Réserver">Réserver</a>
-            </div>
-
-            <div class="elm">
-                <div class="img-container">
-                    <img src="src/img/lumix.JPG" alt="" class="elm-pic">
-                </div>
-                <span class="elm-name">Canon EOS 5D</span>
-                <a href="index.php?page=materiel" class="btn btn-materiel disabled" data-content="Réserver">Réserver</a>
-            </div>
-
-            <div class="elm">
-                <div class="img-container">
-                    <img src="src/img/lumix.JPG" alt="" class="elm-pic">
-                </div>
-                <span class="elm-name">Canon EOS 5D</span>
-                <a href="index.php?page=materiel" class="btn btn-materiel" data-content="Réserver">Réserver</a>
-            </div>
-
-            <div class="elm">
-                <div class="img-container">
-                    <img src="src/img/lumix.JPG" alt="" class="elm-pic">
-                </div>
-                <span class="elm-name">Canon EOS 5D</span>
-                <a href="index.php?page=materiel" class="btn btn-materiel" data-content="Réserver">Réserver</a>
-            </div>
-
-            <div class="elm">
-                <div class="img-container">
-                    <img src="src/img/lumix.JPG" alt="" class="elm-pic">
-                </div>
-                <span class="elm-name">Canon EOS 5D</span>
-                <a href="index.php?page=materiel" class="btn btn-materiel" data-content="Réserver">Réserver</a>
-            </div>
-
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

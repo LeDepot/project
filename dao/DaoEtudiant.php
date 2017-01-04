@@ -1,43 +1,56 @@
+
 <?php
 
 require_once 'Dao.php';
-require_once ("classes/class.Personne.php");
+require_once ("classes/class.Etudiant.php");
 
-class DaoPersonne extends Dao {
+class DaoEtudiant extends Dao {
 
-    public function DaoPersonne() {
+    public function DaoEtudiant() {
         parent::__construct();
-        $this->bean = new Personne();
+        $this->bean = new Etudiant();
     }
 
     public function find($id) {
-        $donnees = $this->findById("personne", "ID_PERSONNE", $id);
+        $donnees = $this->findById("personne", "ID", $id);
 
-        $this->bean->setId($donnees['ID_PERSONNE']);
-        $this->bean->setNom($donnees['NOM_PERSONNE']);
-        $this->bean->setPrenom($donnees['PRENOM_PERSONNE']);
-        $this->bean->setLogin($donnees['LOGIN_PERSONNE']);
-        $this->bean->setMdp($donnees['MDP_PERSONNE']);
-        $this->bean->setBlacklist($donnees['BLACKLIST_PERSONNE']);
-        $this->bean->setPromo($donnees['PROMO_PERSONNE']);
-        $this->bean->setGroupe($donnees['GROUPE_PERSONNE']);
-        $this->bean->setMail($donnees['MAIL_PERSONNE']);
-        $this->bean->setAdmin($donnees['ADMIN_PERSONNE']);
-        $this->bean->setModerateur($donnees['MODERATEUR_PERSONNE']);
-        //$this->bean->setLesReservations($donnees['LESRESERVATIONS_PERSONNE']);
+        $this->bean->setId($donnees['ID']);
+        $this->bean->setNom($donnees['NOM']);
+        $this->bean->setPrenom($donnees['PRENOM']);
+        $this->bean->setLogin($donnees['LOGIN']);
+        $this->bean->setMdp($donnees['MDP']);
+        $this->bean->setBlacklist($donnees['BLACKLIST']);
+        $this->bean->setImage($donnees['IMAGE']);
+        $this->bean->setPromo($donnees['PROMO']);
+        $this->bean->setGroupe($donnees['GROUPE']);
+        $this->bean->setMail($donnees['MAIL']);
+        $this->bean->setAdmin($donnees['ADMIN']);
+        $this->bean->setModerateur($donnees['MODERATEUR']);
+        //$this->bean->setLesReservations($donnees['LESRESERVATIONS']);
 
     }
 
     public function getListe() {
         $sql = "SELECT *
                 FROM personne
-                ORDER BY NOM_PERSONNE PRENOM_PERSONNE";
+                ORDER BY NOM PRENOM";
         $requete = $this->pdo->prepare($sql);
         $liste = array();
         if ($requete->execute()) {
             while ($donnees = $requete->fetch()) {
                 $personne = new Personne(
-                    $donnees['ID_PERSONNE'], $donnees['NOM_PERSONNE'], $donnees['PRENOM_PERSONNE'], $donnees['LOGIN_PERSONNE'], $donnees['BLACKLIST_PERSONNE'], $donnees['PROMO_PERSONNE'], $donnees['GROUPE_PERSONNE'], $donnees['MAIL_PERSONNE'], $donnees['ADMIN_PERSONNE'], $donnees['MODERETEUR_PERSONNE'], $donnees['LESRESERVATIONS_PERSONNE']
+                    $donnees['ID'],
+                    $donnees['NOM'],
+                    $donnees['PRENOM'],
+                    $donnees['LOGIN'],
+                    $donnees['BLACKLIST'],
+                    $donnees['IMAGE'],
+                    $donnees['PROMO'],
+                    $donnees['GROUPE'],
+                    $donnees['MAIL'],
+                    $donnees['ADMIN'],
+                    $donnees['MODERETEUR']
+//                    $donnees['LESRESERVATIONS']
                 );
                 $liste[] = $personne;
             }

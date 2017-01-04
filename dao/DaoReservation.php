@@ -11,25 +11,29 @@ class DaoReservation extends Dao {
     }
 
     public function find($id) {
-        $donnees = $this->findById("reservation", "ID_RESERVATION", $id);
+        $donnees = $this->findById("reservation", "ID", $id);
 
-        $this->bean->setId($donnees['ID_RESERVATION']);
-        $this->bean->setDateDebut($donnees['DATEDEBUT_RESERVATION']);
-        $this->bean->setDateFin($donnees['DATEFIN_RESERVATION']);
-        $this->bean->setValide($donnees['VALIDE_RESERVATION']);
-        //$this->bean->setLesPersonnes($donnees['LESPERSONNES_RESERVATION']);
+        $this->bean->setId($donnees['ID']);
+        $this->bean->setDateDebut($donnees['DATEDEBUT']);
+        $this->bean->setDateFin($donnees['DATEFIN']);
+        $this->bean->setValide($donnees['VALIDE']);
+        //$this->bean->setLesPersonnes($donnees['LESPERSONNES']);
     }
 
     public function getListe() {
         $sql = "SELECT *
                 FROM reservation 
-                ORDER BY DATEDEBUT_RESERVATION DATEFIN_RESERVATION";
+                ORDER BY DATEDEBUT";
         $requete = $this->pdo->prepare($sql);
         $liste = array();
         if ($requete->execute()) {
             while ($donnees = $requete->fetch()) {
                 $reservation = new Reservation(
-                    $donnees['ID_RESERVATION'], $donnees['DATEDEBUT_RESERVATION'], $donnees['DATEFIN_RESERVATION'], $donnees['VALIDE_RESERVATION'], $donnees['LESPERSONNES_RESERVATION']
+                    $donnees['ID'],
+                    $donnees['DATEDEBUT'],
+                    $donnees['DATEFIN'],
+                    $donnees['VALIDE']
+//                    $donnees['LESPERSONNES']
                 );
                 $liste[] = $reservation;
             }

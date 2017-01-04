@@ -1,7 +1,8 @@
 <?php
 
-require_once 'Dao.php';
-require_once ("classes/class.Materiel.php");
+require_once ('Dao.php');
+require_once ('classes/class.Materiel.php');
+require_once ('classes/class.Categorie.php');
 
 class DaoMateriel extends Dao {
 
@@ -11,28 +12,44 @@ class DaoMateriel extends Dao {
     }
 
     public function find($id) {
-        $donnees = $this->findById("materiel", "ID_MATERIEL", $id);
+        $donnees = $this->findById("materiel", "ID", $id);
 
-        $this->bean->setId($donnees['ID_MATERIEL']);
-        $this->bean->setNom($donnees['NOM_MATERIEL']);
-        $this->bean->setDesc($donnees['DESC_MATERIEL']);
-        $this->bean->setDesc($donnees['DESC_MATERIEL']);
-        $this->bean->setImage($donnees['IMAGE_MATERIEL']);
-        $this->bean->setNombre($donnees['NOMBRE_MATERIEL']);
-        $this->bean->setStatut($donnees['STATUT_MATERIEL']);
-      //  $this->bean->setLesReservations($donnees['LESRESERVATIONS_MATERIEL']);
+        $this->bean->setId($donnees['ID']);
+        $this->bean->setNom($donnees['NOM']);
+        $this->bean->setDesc($donnees['DESC']);
+        $this->bean->setImage($donnees['IMAGE']);
+        $this->bean->setNombre($donnees['NOMBRE']);
+        $this->bean->setQuantite($donnees['QUANTITE']);
+        $this->bean->setStatut($donnees['STATUT']);
+        $this->bean->setPdf($donnees['PDF']);
+      //  $this->bean->setLesReservations($donnees['LESRESERVATIONS']);
     }
 
-    public function getListe() {
-        $sql = "SELECT *
-                FROM materiel 
-                ORDER BY NOM_MATERIEL";
+    public function getListe($id=0) {
+        if($id == 0){
+            $sql = "SELECT *
+                FROM materiel
+                ORDER BY NOM";
+        }else{
+            $sql = "SELECT *
+                FROM materiel, cat_mat
+                WHERE materiel.ID = cat_mat.ID_MATERIEL
+                AND cat_mat.ID_CATEGORIE = ".$id."
+                ORDER BY NOM ASC";
+        }
         $requete = $this->pdo->prepare($sql);
         $liste = array();
         if ($requete->execute()) {
             while ($donnees = $requete->fetch()) {
                 $materiel = new Materiel(
-                    $donnees['ID_MATERIEL'], $donnees['NOM_MATERIEL'], $donnees['DESC_MATERIEL'], $donnees['IMAGE_MATERIEL'], $donnees['NOMBRE_MATERIEL'], $donnees['STATUT_MATERIEL'], $donnees['LESRESERVATIONS_MATERIEL']
+                    $donnees['ID'],
+                    $donnees['NOM'],
+                    $donnees['DESC'],
+                    $donnees['IMAGE'],
+                    $donnees['NOMBRE'],
+                    $donnees['STATUT'],
+                    $donnees['PDF']
+//                    $donnees['LESRESERVATIONS']
                 );
                 $liste[] = $materiel;
             }
@@ -41,7 +58,25 @@ class DaoMateriel extends Dao {
         return $liste;
     }
 
+    public function setLesCategories()
+    {
+        $sql = "SELECT *
+                FROM cat_mat, categorie
+                WHERE
+                cat_mat.ID_MATERIEL = " . $this->bean->getId() . "
+                AND cat_mat.ID_CATEGORIE = type.ID_CATEGORIE
+                ORDER BY NOM";
+        $requete = $this->pdo->prepare($sql);
+        $liste = array();
+        if ($requete->execute()) {
+            while ($donnees = $requete->fetch()) {
+                $type = new Categorie($donnees['ID_CATEGORIE'], $donnees['NOM']);
+                $liste[] = $type;
+            }
+            $this->bean->setLesCategories($liste);
+        }
 
+    }
 }
 
 ?>
