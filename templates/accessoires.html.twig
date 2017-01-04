@@ -14,7 +14,7 @@
                         <img src="src/img/{{ materiel.IMAGE }}" alt="" class="elm-pic">
                     </div>
                     <span class="elm-name">{{ materiel.NOM }}</span>
-                    <a href="index.php?page=materiel" class="btn btn-materiel" data-content="Réserver">Réserver</a>
+                    <a href="index.php?page=materiel&id={{ materiel.id }}" class="btn btn-materiel" data-content="Réserver">Réserver</a>
                 </div>
             {% endfor %}
         </div>

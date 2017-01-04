@@ -19,7 +19,7 @@ class Materiel {
 
 //    private $laReservation = array();
 //    private $lAdmin = null;
-    private $lesCategories = array();
+//    private $lesCategories = array();
 //    private $leModerateur= null;
 
 
@@ -45,7 +45,7 @@ class Materiel {
 
 //    public function getLaReservation() {return $this->laReservation;}
 //    public function getLAdmin() {return $this->lAdmin;}
-    public function getLesCategories() {return $this->lesCategories;}
+//    public function getLesCategories() {return $this->lesCategories;}
 //    public function getLeModerateur() {return $this->leModerateur;}
 
 
@@ -61,7 +61,7 @@ class Materiel {
 
 //    public function setLaReservation($laReservation) {$this->laReservation = $laReservation;}
 //    public function setLAdmin($lAdmin) {$this->lAdmin = $lAdmin;}
-    public function setLesCategories($lesCategories) {$this->lesCategories = $lesCategories;}
+//    public function setLesCategories($lesCategories) {$this->lesCategories = $lesCategories;}
 //    public function setLeModerateur($leModerateur) {$this->leModerateur = $leModerateur;}
 
 }

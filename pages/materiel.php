@@ -4,7 +4,7 @@ require_once('dao/DaoMateriel.php');
 require_once 'dao/DaoCategorie.php';
 
 $daoMateriel = new DaoMateriel();
-$liste = $daoMateriel->getListe();
+$liste = $daoMateriel->getListe($_GET['id']);
 
 for($i=0;$i<count($liste);$i++){
     $daoMateriel = new DaoMateriel();
