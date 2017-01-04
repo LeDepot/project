@@ -187,7 +187,7 @@ header .container {
 header h1 {
   display: inline-block;
   text-indent: -9999px;
-  background-image: url(../src/img/mmi-stroke-logo-02.svg);
+  background-image: url(../src/img/logo.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;

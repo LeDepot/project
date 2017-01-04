@@ -34,13 +34,13 @@ class DaoMateriel extends Dao {
     }
 
     public function insert($obj) {
-        $stmt =  $this->pdo->prepare("INSERT INTO materiel (nom, description, image, nombre, quantite, statut, pdf, id_cat) VALUES (:nom, :description, :image, :nombre, :quantite, :statut, :pdf, :id_cat)");
+        $stmt =  $this->pdo->prepare("INSERT INTO materiel (nom, description, image, nombre, quantite, statut, pdf, id_cat, caution) VALUES (:nom, :description, :image, :nombre, :quantite, :statut, :pdf, :id_cat, :caution)");
         $res = $stmt->execute($obj->getFields());
         return $res;
     }
 
     public function update($obj) {
-        $stmt = $this->pdo->prepare("UPDATE materiel SET NOM=:NOM, DESCRIPTION=:DESCRIPTION, IMAGE=:IMAGE, NOMBRE=:NOMBRE, QUANTITE=:QUANTITE, STATUT=:STATUT, PDF=:PDF, ID_CAT=:ID_CAT WHERE ID=:ID");
+        $stmt = $this->pdo->prepare("UPDATE materiel SET NOM=:NOM, DESCRIPTION=:DESCRIPTION, IMAGE=:IMAGE, NOMBRE=:NOMBRE, QUANTITE=:QUANTITE, STATUT=:STATUT, PDF=:PDF, ID_CAT=:ID_CAT, CAUTION=:CAUTION WHERE ID=:ID");
         $res = $stmt->execute($obj->getFields());
         return $res;
     }
