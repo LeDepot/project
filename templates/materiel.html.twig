@@ -6,9 +6,9 @@
         <section class="materiel">
             <section class="sup">
                 <div class="right">
-                    <h2>Canon EOS 5D</h2>
+                    <h2>{{ materiel.NOM }}</h2>
                     <a href="#" class="btn green" id="resa" data-content="Réserver">Réserver</a>
-                    <a target="_blank" href="src/pdf/CanonEOS5d.pdf" class="btn white" id="manuel" data-content="Manuel d'utilisation">Manuel d'utilisation</a>
+                    <a target="_blank" href="{{ materiel.PDF }}" class="btn white" id="manuel" data-content="Manuel d'utilisation">Manuel d'utilisation</a>
                 </div>
                 <div class="left">
                     <div class="carousel" id="wrapper">
@@ -24,10 +24,7 @@
                 <span class="caution">Caution : 300€</span>
                 <a href="about.html" class="btn CGU" data-content="Conditions d'utilisation">Conditions d'utilisation</a>
                 <p class="desc">
-                    L'EOS 5D Mark III est un reflex numérique plein format de 22,3 MP doté d'un système autofocus à 61
-                    collimateurs et capable d'effectuer des prises de vue en continu à 6 im./s. Enregistrez des vidéos
-                    Full HD de grande qualité, avec un contrôle manuel sur tous les réglages, de la fréquence d'images aux
-                    paramètres audio.
+                    {{ materiel.DESCRIPTION }}
                 </p>
                 <ul class="caracteristiques">
                     <li>Capteur full frame de 22,3 millions de pixels</li>
