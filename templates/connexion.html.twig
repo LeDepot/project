@@ -1,0 +1,39 @@
+{% extends 'template.html.twig' %}
+
+{% block page %}
+    <section class="connexion">
+        <div class="blockConnect">
+            <form action="">
+                <fieldset>
+                    <legend>Connection : </legend>
+                    <label for="loginCnx">Nom d'utilisateur : </label>
+                    <input type="text" id="loginCnx" />
+                    <label for="pswCnx">Mot de passe : </label>
+                    <input type="text" id="pswCnx" />
+                </fieldset>
+            </form>
+            <form action="">
+                <fieldset>
+                    <legend>Inscription : </legend>
+                    <label for="nom">Nom : </label>
+                    <input type="text" id="nom" />
+                    <label for="prenom">Prénom : </label>
+                    <input type="text" id="prenom" />
+                    <label for="mail">Email : </label>
+                    <input type="text" id="mail" />
+                    <label for="loginInsc">Login : </label>
+                    <input type="text" id="loginInsc" />
+                    <label for="pswInsc">Mot de passe : </label>
+                    <input type="text" id="pswInsc" />
+                    <label for="pswInscVerif">Confirmation du mot de passe : </label>
+                    <input type="text" id="pswInscVerif" />
+                    <label for="promo">Promo : </label>
+                    <input type="text" id="promo" />
+                    <label for="groupe">Groupe : </label>
+                    <input type="text" id="groupe" />
+                </fieldset>
+            </form>
+            <a href="" class="">Pas encore de compte ? </a>
+        </div>
+    </section>
+{% endblock %}

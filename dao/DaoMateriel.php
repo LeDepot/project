@@ -77,6 +77,23 @@ class DaoMateriel extends Dao {
         }
 
     }
+
+    public function create(){
+        $sql = "INSERT INTO client(NOM, DESC, IMAGE, NOMBRE, QUANTITE, STATUT, PDF,)
+           VALUES(?, ?, ?, ?, ?, ?, ?)";
+
+        $requete = $this->pdo->prepare($sql);
+
+        $requete->bindValue(1, $this->bean->getNom());
+        $requete->bindValue(2, $this->bean->getDesc());
+        $requete->bindValue(3, $this->bean->getImage());
+        $requete->bindValue(4, $this->bean->getNombre());
+        $requete->bindValue(5, $this->bean->getQuantite());
+        $requete->bindValue(6, $this->bean->getStatut());
+        $requete->bindValue(7, $this->bean->getPdf());
+
+        $requete->execute();
+    }
 }
 
 ?>
