@@ -6,7 +6,4 @@ $materiel = new DaoMateriel();
 
 $listeAccessoire = $materiel->getListByCat(5); // Id de accessoires = 5
 
-$template = $twig->loadTemplate('accessoires.html.twig');
-echo $template->render(array(
-    'accessoires' => $listeAccessoire,
-));
+$param = array('accessoires' => $listeAccessoire);

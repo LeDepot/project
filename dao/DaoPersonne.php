@@ -39,6 +39,17 @@ class DaoPersonne extends Dao {
         $res = $stmt->execute($obj->getFields());
         return $res;
     }
+
+    // Vérification qu'un couple (login, mdp) est bien dans la base
+    // Retourne l'utilisateur trouvé ou null
+    public function checkUser($login, $mdp) {
+        $stmt = $this->pdo->prepare("SELECT * FROM personne WHERE login=? AND mdp=?");
+        $stmt->execute(array($login, $mdp));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row === false)
+            return null;
+        return new Personne($row);
+    }
 }
 
 ?>

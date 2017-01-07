@@ -6,7 +6,9 @@ $materiel = new DaoMateriel();
 
 $item = $materiel->findById($_GET["id"]);
 
-$template = $twig->loadTemplate('materiel.html.twig');
-echo $template->render(array(
+$images = explode(';', $item->IMAGE);
+
+$param = array(
     'materiel' => $item,
-));
+    'images' => $images
+);

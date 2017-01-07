@@ -1,0 +1,81 @@
+{% extends 'template.html.twig' %}
+
+{% block page %}
+
+<div class="container-admin">
+    <div class="page-header">
+        <h1>Modifier</h1>
+    </div>
+
+    <form method="post" action="" enctype="multipart/form-data">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="nom">Nom:</label>
+                    <input type="text" name="nom" class="form-control" id="nom"
+                           value=""/>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" rows="5" id="description" name="description" cols="5" placeholder="Ex: Appareil photo ... "></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+                    <label for="image">Image:</label>
+                    <input id="image" name="image" class="input-file" type="file"><br>
+                    <button type="submit" name="Image" class="btn btn-primary btn-sm" data-content="Enregistrer la photo"></button>
+                    <table class="table">
+                    </table>
+                </div>
+
+                <div class="form-group">
+                    <label for="sante">Nombre:</label>
+                    <input type="number" class="form-control" name="sante" id="sante"
+                           value="4"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="sante">Quantité:</label>
+                    <input type="number" class="form-control" name="sante" id="sante"
+                           value="4"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="disponibilite">Statut:</label>
+                    <input type="checkbox" name="disponibilite" id="disponibilite" checked style="margin-left: 10px"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+                    <label for="pdf">PDF:</label>
+                    <input id="pdf" name="pdf" class="input-file" type="file"><br>
+                    <button type="submit" name="submitImage" class="btn btn-primary btn-sm" data-content="Enregistrer le PDF"></button>
+                    <table class="table">
+                    </table>
+                </div>
+
+                <div class="form-group">
+                    <label for="categorie">Catégorie</label>
+                    <select name="categorie" id="categorie" class="form-control">
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="caution">Caution:</label>
+                    <input type="text" name="caution" id="caution" class="form-control"
+                           value="1997"/>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" name="submit" class="btn btn-primary btn-lg center-block" data-content="Enregistrer le matériel"></button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

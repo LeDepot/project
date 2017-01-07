@@ -15,7 +15,7 @@
 <header>
     <div class="container">
         <h1 class="hidden-mobile">MMI Montbéliard</h1>
-        <span class="titre-site">Le Dépot</span>
+        <span class="titre-site">Le Dépôt</span>
         <nav>
             <div class="menu">
                 <span class="bar"></span>
@@ -29,13 +29,14 @@
             </ul>
         </nav>
         <div class="user">
-            <form action="" class="sub-nav-elm search">
+            <form action="" class="sub-nav-elm search" method="post">
                 <input type="text" id="search" class="search-input">
                 <label for="search" class="search-icon"><i class="fa fa-search"></i></label>
-            </form><!--
-            --><button class="sub-nav-elm cart"><i class="fa fa-shopping-cart"></i></button><!--
-            --><img src="src/img/user-pic.jpg" alt="" class="sub-nav-elm user-picture hidden-mobile" /><!--
-            --><span class="sub-nav-elm user-name hidden-mobile">Cyril Michaud</span>
+                <button name="deconnexion" id="deconnexion" class="sub-nav-elm deco hidden-mobile">Se déconnecter</button>
+            </form>
+            <button class="sub-nav-elm cart"><i class="fa fa-shopping-cart"></i></button>
+
+            <span class="sub-nav-elm user-name hidden-mobile">{{ prenom }} {{ nom }}</span>
         </div>
     </div>
 </header>
