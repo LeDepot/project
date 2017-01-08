@@ -32,11 +32,14 @@
             <form action="" class="sub-nav-elm search" method="post">
                 <input type="text" id="search" class="search-input">
                 <label for="search" class="search-icon"><i class="fa fa-search"></i></label>
-                <button name="deconnexion" id="deconnexion" class="sub-nav-elm deco hidden-mobile">Se déconnecter</button>
+
             </form>
             <button class="sub-nav-elm cart"><i class="fa fa-shopping-cart"></i></button>
 
             <span class="sub-nav-elm user-name hidden-mobile">{{ prenom }} {{ nom }}</span>
+            <form action="" class="sub-nav-elm search" method="post">
+                <button name="deconnexion" id="deconnexion" class="sub-nav-elm deco hidden-mobile"><i class="fa fa-ban" aria-hidden="true"></i></button>
+            </form>
         </div>
     </div>
 </header>
