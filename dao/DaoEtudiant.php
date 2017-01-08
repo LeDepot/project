@@ -30,14 +30,17 @@ class DaoEtudiant extends Dao  {
 
     function insert($obj)
     {
-        $stmt =  $this->pdo->prepare("INSERT INTO etudiant (nom, prenom, login, mdp, mail, promo, groupe, blacklist) VALUES (:nom, :prenom, :login, :mdp, :mail, :promo, :groupe, :blacklist)");
+        $stmt =  $this->pdo->prepare("
+            INSERT INTO ETUDIANT (NOM, PRENOM, LOGIN, MDP, MAIL, PROMO, GROUPE, BLACKLIST, PANIER)
+            VALUES (:NOM, :PRENOM, :LOGIN, :MDP, :MAIL, :PROMO, :GROUPE, :BLACKLIST, :PANIER)
+            ");
         $res = $stmt->execute($obj->getFields());
         return $res;
     }
 
     function update($obj)
     {
-        $stmt = $this->pdo->prepare("UPDATE etudiant SET NOM=:NOM, PRENOM=:PRENOM, LOGIN=:LOGIN, MDP=:MDP, MAIL=:MAIL, PROMO=:PROMO, GROUPE=:GROUPE, BLACKLIST=:BLACKLIST WHERE ID=:ID");
+        $stmt = $this->pdo->prepare("UPDATE etudiant SET NOM=:NOM, PRENOM=:PRENOM, LOGIN=:LOGIN, MDP=:MDP, MAIL=:MAIL, PROMO=:PROMO, GROUPE=:GROUPE, BLACKLIST=:BLACKLIST, PANIER=:PANIER WHERE ID=:ID");
         $res = $stmt->execute($obj->getFields());
         return $res;
     }

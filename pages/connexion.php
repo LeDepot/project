@@ -24,6 +24,7 @@ if (isset($_POST['submit'])) {
     elseif ($user != null) {
         $_SESSION['nom'] = $user->NOM;
         $_SESSION['prenom'] = $user->PRENOM;
+        $_SESSION['id'] = $user->ID;
         header("Location: index.php");
         exit(0);
     }
@@ -33,6 +34,8 @@ if (isset($_POST['submit'])) {
         }
         $_SESSION['nom'] = $userPers->NOM;
         $_SESSION['prenom'] = $userPers->PRENOM;
+        $_SESSION['id'] = $userPers->ID;
+
         header("Location: index.php");
         exit(0);
     }

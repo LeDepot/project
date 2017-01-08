@@ -7,7 +7,10 @@
             <section class="sup">
                 <div class="right">
                     <h2>{{ materiel.NOM }}</h2>
-                    <a href="#" class="btn green" id="resa" data-content="Réserver">Réserver</a>
+
+                    <form method="POST">
+                        <button type="submit" name="reserver" class="btn green" id="resa" data-content="Réserver">Réserver</button>
+                    </form>
                     <a target="_blank" href="{{ materiel.PDF }}" class="btn white" id="manuel" data-content="Manuel d'utilisation">Manuel d'utilisation</a>
                 </div>
                 <div class="left">

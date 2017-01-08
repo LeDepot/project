@@ -6,9 +6,11 @@
     <title>Réservation de matériel - MMI Montbéliard</title>
     <link rel="stylesheet" href="src/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="src/e-calendar/css/jquery.e-calendar.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script type="text/javascript" src="src/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="src/e-calendar/js/jquery.e-calendar.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <link rel="icon" href="src/img/favicon.png">
 </head>
 <body>
@@ -23,23 +25,25 @@
                 <span class="bar"></span>
             </div>
             <ul>
-                <li><a href="index.php">Catalogue</a></li><!--
-                --><li><a href="index.php?page=planning">Planning</a></li><!--
-                --><li><a href="index.php?page=about">A propos</a></li>
+                <li><a href="index.php">Catalogue</a></li>
+                <li><a href="index.php?page=planning">Planning</a></li>
+                <li><a href="index.php?page=about">A propos</a></li>
+                {% if admin == 1 %}
+                    <li><a href="index.php?page=listeMateriel">Liste Matériel</a></li>
+                    <li><a href="index.php?page=listeEtudiant">Liste Personnes</a></li>
+                {% endif %}
             </ul>
         </nav>
         <div class="user">
             <form action="" class="sub-nav-elm search" method="post">
-                <input type="text" id="search" class="search-input">
-                <label for="search" class="search-icon"><i class="fa fa-search"></i></label>
-
+                {#<input type="text" id="search" class="search-input">#}
+                {#<label for="search" class="search-icon"><i class="fa fa-search"></i></label>#}
+                <button name="deconnexion" id="deconnexion" class="sub-nav-elm deco hidden-mobile">Se déconnecter</button>
             </form>
             <button class="sub-nav-elm cart"><i class="fa fa-shopping-cart"></i></button>
 
             <span class="sub-nav-elm user-name hidden-mobile">{{ prenom }} {{ nom }}</span>
-            <form action="" class="sub-nav-elm search" method="post">
-                <button name="deconnexion" id="deconnexion" class="sub-nav-elm deco hidden-mobile"><i class="fa fa-ban" aria-hidden="true"></i></button>
-            </form>
+            <input type="text" value="{{ id }}" class="hidden id_session" style="display: none;"/>
         </div>
     </div>
 </header>
@@ -55,10 +59,13 @@
                 <h2>Votre Panier</h2>
             </div>
             <div class="content">
-                <p class="default">
-                    Votre panier est vide.
-                </p>
+                {#<p class="default">#}
+                    {#Votre panier est vide.#}
+                {#</p>#}
             </div>
+            <form action="" method="post">
+                <button name="valid" type="submit">Valider la réservation</button>
+            </form>
         </div>
     </section>
 </main>
