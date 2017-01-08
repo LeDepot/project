@@ -114,24 +114,25 @@
 
         // Affichage du panier
         $('.sub-nav-elm.cart').on('click', function() {
-            var url = "http://"+window.location.hostname+":8080"+window.location.pathname
+            var url = "http://"+window.location.hostname+":80"+window.location.pathname;
             var url = url.split('index');
-            var url = url[0]+"panier.php?id="+$('.id_session').attr('value')
+            var url = url[0]+"panier.php?id="+$('.id_session').attr('value');
             console.log(url)
             $.ajax({
                 type: 'GET',
                 url: url,
                 dataType:'json',
                 success: function(reponse) {
+                    var html = "";
                     $.each(reponse, function(key, value) {
-                        var html = "<div class='elmName'>"+value.NOM+"</div><div class='elmCaution'>"+value.CAUTION+"</div> ";
-                        $('.panier .content').append(html);
-                        console.log(key, value);
+                        html += "<div class='elmName'>"+value.NOM+"</div><div class='elmCaution'>"+value.CAUTION+"</div> ";
+                        console.log(key);
                     });
+                    $('.panier .content').html(html);
                 },
                 error: function() {
                     var html="<div>Votre panier est vide.</div>";
-                    $('.panier .content').append(html);
+                    $('.panier .content').html(html);
                     console.log('error');
                 }
             })
