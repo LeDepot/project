@@ -1,0 +1,89 @@
+{% extends 'template.html.twig' %}
+
+{% block page %}
+    <a href="index.php?page=ajout" class="btn" data-content="Ajouter">Ajouter</a>
+
+<table id="listeMateriel" class="display nowrap" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Nombre</th>
+        <th>Quantité</th>
+        <th>Statut</th>
+        <th>Catégorie</th>
+        <th>Caution</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tfoot>
+    <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Nombre</th>
+        <th>Quantité</th>
+        <th>Statut</th>
+        <th>Catégorie</th>
+        <th>Caution</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </tfoot>
+
+    <tbody>
+    {% for materiel in materiels %}
+        <tr>
+            <td>{{ materiel.NOM }}</td>
+            <td>{{ materiel.DESCRIPTION }}</td>
+            <td>{{ materiel.NOMBRE }}</td>
+            <td>{{ materiel.QUANTITE }}</td>
+            <td>
+                {% if materiel.STATUT == 1 %}
+                    Disponnible
+                {% endif %}
+                {% if materiel.STATUT == 0 %}
+                    Indisponnible
+                {% endif %}
+            </td>
+            <td>
+                {% if materiel.ID_CAT == 1 %}
+                    Photo
+                {% endif %}
+
+                {% if materiel.ID_CAT == 2 %}
+                    Vidéo
+                {% endif %}
+
+                {% if materiel.ID_CAT == 3 %}
+                    Son
+                {% endif %}
+
+                {% if materiel.ID_CAT == 4 %}
+                    Éclairage
+                {% endif %}
+
+                {% if materiel.ID_CAT == 5 %}
+                    Accessoires
+                {% endif %}
+
+                {% if materiel.ID_CAT == 6 %}
+                    Salles
+                {% endif %}
+            </td>
+            <td>{{ materiel.CAUTION }}</td>
+            <td><a href="index.php?page=modification&id={{ materiel.ID }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+            <td>
+                <form action="" method="POST">
+                    <input type="text" class="form-control hidden" value="{{ materiel.ID }}" name="idMateriel">
+                    <button type="submit" name="supp"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

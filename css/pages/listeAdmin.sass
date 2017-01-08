@@ -1,0 +1,90 @@
+.dataTables_wrapper
+    width: 80%
+    margin: auto
+    margin-top: 50px
+
+    a, a:visited, a:focus
+        i.fa
+            color: $blue
+
+        &:hover
+            i.fa
+                color: $pink
+
+    .dataTables_paginate
+        a.paginate_button
+            background: transparent
+            color: $gray !important
+            border: none
+            border-bottom: 3px solid $blue
+            border-radius: 0
+
+            &:hover
+                background: transparent !important
+                border: none
+                border-bottom: 3px solid $pink
+                color: $gray !important
+
+
+            &.current
+                background: transparent !important
+                color: $gray !important
+                border: none
+                border-bottom: 3px solid $pink
+
+                &:hover
+                    border: none
+                    border-bottom: 3px solid $pink
+
+            &.disabled
+                background: transparent !important
+                color: $gray !important
+                border: none
+                border-bottom: 3px solid $gray
+
+                &:hover
+                    border: none
+                    border-bottom: 3px solid $gray
+
+    tfoot
+        display: none
+
+    thead
+        background: $gray
+        color: white
+
+        th
+            border: none !important
+
+    tbody
+        tr
+            background: transparent !important
+
+            td
+                overflow: hidden
+                white-space: normal !important
+                //border: 1px solid #ddd
+
+                &.sorting_1
+                    background: transparent !important
+
+                button
+                    background: transparent
+                    border: none
+                    font-size: 1.6rem
+                    color: $blue
+
+                    &:hover
+                        color: $pink
+                        cursor: pointer
+
+                input.hidden
+                    display: none
+
+    .dataTables_filter
+        padding: 10px 0
+
+        input
+            height: 100%
+
+

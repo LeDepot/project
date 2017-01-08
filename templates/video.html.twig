@@ -3,18 +3,18 @@
 {% block page %}
     <section class="head video">
         <div class="BGcolor">
-            <h2 class="head-title">Vidéo</h2>
+            <h2 class="head-title">Vidéos</h2>
         </div>
     </section>
     <section class="main-content liste-materiel">
         <div class="liste-elm">
-            {% for materiel in listeMateriel %}
+            {% for video in videos %}
                 <div class="elm">
                     <div class="img-container">
-                        <img src="src/img/{{ materiel.IMAGE }}" alt="" class="elm-pic">
+                        <img src="{{ video.IMAGE }}" alt="" class="elm-pic">
                     </div>
-                    <span class="elm-name">{{ materiel.NOM }}</span>
-                    <a href="index.php?page=materiel&id={{ materiel.id }}" class="btn btn-materiel" data-content="Réserver">Réserver</a>
+                    <span class="elm-name">{{ video.NOM }}</span>
+                    <a href="index.php?page=materiel&id={{ video.ID }}" class="btn btn-materiel" data-content="Réserver">Réserver</a>
                 </div>
             {% endfor %}
         </div>

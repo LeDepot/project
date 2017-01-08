@@ -1,16 +1,37 @@
 <?php
 
-require_once('dao/DaoMateriel.php');
-require_once 'dao/DaoCategorie.php';
+require_once("dao/DaoMateriel.php");
+require_once('dao/DaoEtudiant.php');
 
-$daoMateriel = new DaoMateriel();
-$liste = $daoMateriel->getListe($_GET['id']);
+$materiel = new DaoMateriel();
 
-for($i=0;$i<count($liste);$i++){
-    $daoMateriel = new DaoMateriel();
-    $daoMateriel->find($liste[$i]->getId());
+$item = $materiel->findById($_GET["id"]);
 
-    $listeMateriel[$i] = $daoMateriel->bean;
+$images = explode(';', $item->IMAGE);
+
+$param = array(
+    'materiel' => $item,
+    'images' => $images
+);
+
+$etudiant = new DaoEtudiant();
+
+
+if(isset($_POST["reserver"])) {
+    $etudiantModifie = $etudiant->findById($_SESSION['id']);
+//    $item = $materiel->findById($_GET['id']);
+    if(isset($etudiantModifie->PANIER)) {
+        $panier = $etudiantModifie->PANIER;
+        $panier = json_decode($panier);
+        $panier[] = $_GET['id'];
+    }else {
+        $panier[] = $_GET['id'];
+    }
+
+    $panier = json_encode($panier);
+
+    $etudiantModifie->PANIER = $panier;
+    $etudiant->update($etudiantModifie);
+
+    header('Location:index.php?page=materiel&id='.$_GET['id']);
 }
-//   var_dump($listeMateriel);die();
-$param = array('listeMateriel' => $liste);

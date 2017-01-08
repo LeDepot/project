@@ -5,37 +5,42 @@ require_once ("classes/class.Categorie.php");
 
 class DaoCategorie extends Dao {
 
-    public function DaoCategorie() {
-        parent::__construct();
-        $this->bean = new Categorie();
+    function findById($id)
+    {
+        $stmt = $this->pdo->query("SELECT * FROM categorie WHERE id='$id'");
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Categorie($row);
     }
 
-    public function find($id) {
-        $donnees = $this->findById("categorie", "ID", $id);
-
-        $this->bean->setId($donnees['ID']);
-        $this->bean->setNom($donnees['NOM']);
-        //$this->bean->setLesMateriels($donnees['LESMATERIELS']);
+    function delete($id)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM categorie WHERE id=?");
+        $res = $stmt->execute(array($id));
+        return $res;
     }
 
-    public function getListe() {
-        $sql = "SELECT *
-                FROM categorie 
-                ORDER BY NOM";
-        $requete = $this->pdo->prepare($sql);
-        $liste = array();
-        if ($requete->execute()) {
-            while ($donnees = $requete->fetch()) {
-                $categorie = new Categorie(
-                    $donnees['ID'],
-                    $donnees['NOM']
-//                    $donnees['LESMATERIELS']
-                );
-                $liste[] = $categorie;
-            }
-        }
+    function getList()
+    {
+        $res = array();
+        $stmt = $this->pdo->query("SELECT * FROM categorie ORDER BY nom");
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
+            $res[] = new Categorie($row);
+        return $res;
+    }
 
-        return $liste;
+    function insert($obj)
+    {
+        $stmt =  $this->pdo->prepare("INSERT INTO categorie (nom) VALUES (:nom)");
+        $res = $stmt->execute($obj->getFields());
+        return $res;
+
+    }
+
+    function update($obj)
+    {
+        $stmt = $this->pdo->prepare("UPDATE categorie SET NOM=:NOM WHERE ID=:ID");
+        $res = $stmt->execute($obj->getFields());
+        return $res;
     }
 
 

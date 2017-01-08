@@ -1,16 +1,9 @@
 <?php
 
-require_once('dao/DaoMateriel.php');
-require_once 'dao/DaoCategorie.php';
+require_once("dao/DaoMateriel.php");
 
-$daoMateriel = new DaoMateriel();
-$liste = $daoMateriel->getListe(3);
+$materiel = new DaoMateriel();
 
-for($i=0;$i<count($liste);$i++){
-    $daoMateriel = new DaoMateriel();
-    $daoMateriel->find($liste[$i]->getId());
+$listeSon = $materiel->getListByCat(3); // Id de sons = 3
 
-    $listeMateriel[$i] = $daoMateriel->bean;
-}
-//   var_dump($listeMateriel);die();
-$param = array('listeMateriel' => $liste);
+$param = array('sons' => $listeSon);

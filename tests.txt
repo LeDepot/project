@@ -1,0 +1,115 @@
+<?php
+
+//PAGE DE TEST DES DAO
+
+//CODE A SUPPRIMER QUAND TOUT A ETE TESTE
+
+require_once("dao/DaoMateriel.php");
+require_once("dao/DaoCategorie.php");
+require_once("dao/DaoEtudiant.php");
+require_once("dao/DaoPersonne.php");
+require_once("dao/DaoReservation.php");
+
+$materiel = new DaoMateriel();
+$personne = new DaoPersonne();
+$categorie = new DaoCategorie();
+$reservation = new DaoReservation();
+$etudiant = new DaoEtudiant();
+
+///////////////////
+//TEST MATERIEL
+///////////////////
+
+$list = $materiel->getList();
+//var_dump("Liste des objets materiel : " , $list);
+
+$materiel->delete(12);
+
+//var_dump("Ajout d'une nouveau materiel");
+$nouveauMateriel = new Materiel(array('nom' => "nouveau", 'description' => "nouveau",
+    'image' => "nouveau", 'nombre' => 1, 'quantite' => 1, 'statut' => 1, 'pdf' => 'pdf'));
+
+//$materiel->insert($nouveauMateriel);
+
+//var_dump("Mise à jour du materiel 83");
+$materielModifie = $materiel->findById(83);
+$materielModifie->NOM = "CHANGEMENT";
+//var_dump($materielModifie);
+$materiel->update($materielModifie);
+
+
+///////////////////
+//TEST ETUDIANT
+///////////////////
+
+$listeEtudiant = $etudiant->getList();
+//var_dump($listeEtudiant);
+
+$etudiant->delete(5);
+
+$nouvelEtudiant = new Etudiant(array('nom' => "exemple", 'prenom' => "exemple",
+    'login' => "qsdqsd", 'mdp' => "qsdqsd", 'mail' => "qsdqsd", 'promo' => '2a', 'groupe' => '3', 'blacklist' => 0));
+
+//$etudiant->insert($nouvelEtudiant);
+
+$etudiantModifie = $etudiant->findById(4);
+$etudiantModifie->PROMO = "1A";
+
+$etudiant->update($etudiantModifie);
+
+///////////////////
+//TEST PERSONNE
+///////////////////
+
+$listePersonne = $personne->getList();
+//var_dump($listePersonne);
+
+$personne->delete(5);
+
+$nouvellePersonne = new Personne(array('nom' => "exemple", 'prenom' => "exemple",
+    'login' => "qsdqsd", 'mdp' => "qsdqsd", 'mail' => "qsdqsd", 'admin' => 1, 'moderateur' => 0));
+
+//$personne->insert($nouvellePersonne);
+
+$personneModifie = $personne->findById(4);
+$personneModifie->PRENOM = "test";
+
+$personne->update($personneModifie);
+
+
+///////////////////
+//TEST RESERVATION
+///////////////////
+
+$listeReservation = $reservation->getList();
+//var_dump($listeReservation);
+
+$reservation->delete(5);
+
+$nouvelleReservation = new Reservation(array('datedebut' => "2016-09-17", 'datefin' => "2016-01-30",
+    'valide' => 0));
+
+//$reservation->insert($nouvelleReservation);
+
+$reservationModifiee = $reservation->findById(4);
+$reservationModifiee->DATEDEBUT = "1999-01-19";
+
+$reservation->update($reservationModifiee);
+
+///////////////////
+//TEST CATEGORIE
+///////////////////
+
+$listeCategorie = $categorie->getList();
+//var_dump($listeCategorie);
+
+$categorie->delete(5);
+
+$nouveauCategorie = new Categorie(array('nom' => 'camera'));
+
+//$categorie->insert($nouveauCategorie);
+
+$categorieModifiee = $categorie->findById(4);
+$categorieModifiee->NOM = "camera";
+
+$categorie->update($categorieModifiee);

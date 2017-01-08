@@ -1,20 +1,20 @@
 {% extends 'template.html.twig' %}
 
 {% block page %}
-    <section class="head video">
+    <section class="head son">
         <div class="BGcolor">
-            <h2 class="head-title">Video</h2>
+            <h2 class="head-title">Son</h2>
         </div>
     </section>
     <section class="main-content liste-materiel">
         <div class="liste-elm">
-            {% for materiel in listeMateriel %}
+            {% for son in sons %}
                 <div class="elm">
                     <div class="img-container">
-                        <img src="src/img/{{ materiel.IMAGE }}" alt="" class="elm-pic">
+                        <img src="{{ son.IMAGE }}" alt="" class="elm-pic">
                     </div>
-                    <span class="elm-name">{{ materiel.NOM }}</span>
-                    <a href="index.php?page=materiel&id={{ materiel.id }}" class="btn btn-materiel" data-content="Réserver">Réserver</a>
+                    <span class="elm-name">{{ son.NOM }}</span>
+                    <a href="index.php?page=materiel&id={{ son.ID }}" class="btn btn-materiel" data-content="Réserver">Réserver</a>
                 </div>
             {% endfor %}
         </div>

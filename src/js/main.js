@@ -52,7 +52,6 @@
         // ===================================================
         $('.user button.cart').on('click', function() {
             $('.panier').toggleClass('open');
-            console.log('bouh');
         });
 
         // Fermeture du pannier
@@ -86,5 +85,56 @@
                 }
             ]
         });
+
+        // Initialisation de DataTable pour l'administration
+
+        $('#listeMateriel, #listeEtudiant').DataTable({
+            dom: 'Bfrtip',
+            "language":
+            {
+                "sEmptyTable":     "Aucun matériel disponible",
+                "sInfo":           "Affiche de  _START_ à _END_ sur _TOTAL_ résultats",
+                "sInfoEmpty":      "N'affiche aucun résultat",
+                "sInfoFiltered":   "",
+                "sInfoPostFix":    "",
+                "sInfoThousands":  ",",
+                "sLengthMenu":     "Montrer _MENU_ résultats",
+                "sLoadingRecords": "Chargement...",
+                "sProcessing":     "Traitement...",
+                "sSearch":         "Recherche:",
+                "sZeroRecords":    "Aucun résultat correspondant trouvé",
+                "oPaginate": {
+                    "sFirst":    "Premier",
+                    "sLast":     "Dernier",
+                    "sNext":     "Suivant",
+                    "sPrevious": "Précédent"
+                }
+            }
+        });
+
+        // Affichage du panier
+        $('.sub-nav-elm.cart').on('click', function() {
+            var url = "http://"+window.location.hostname+":8080"+window.location.pathname
+            var url = url.split('index');
+            var url = url[0]+"panier.php?id="+$('.id_session').attr('value')
+            console.log(url)
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType:'json',
+                success: function(reponse) {
+                    $.each(reponse, function(key, value) {
+                        var html = "<div class='elmName'>"+value.NOM+"</div><div class='elmCaution'>"+value.CAUTION+"</div> ";
+                        $('.panier .content').append(html);
+                        console.log(key, value);
+                    });
+                },
+                error: function() {
+                    var html="<div>Votre panier est vide.</div>";
+                    $('.panier .content').append(html);
+                    console.log('error');
+                }
+            })
+        })
     });
 })();

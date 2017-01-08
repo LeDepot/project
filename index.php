@@ -1,4 +1,19 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['nom']) && $_GET['page'] != "connexion") {
+    // On renvoie vers la page de connexion
+    header("Location: index.php?page=connexion");
+    exit(0);
+}
+
+if (isset($_POST['deconnexion']))
+{
+    session_destroy();
+    header("Location: index.php?page=connexion");
+    exit(0);
+}
+
 // Appel de la classe de chargement du moteur
 include_once('Twig/Autoloader.php');
 
@@ -35,10 +50,7 @@ if(isset($routes[$uriDemandee])){
     $page = $routes["accueil"]["page"];
     $template = $routes["accueil"]["template"];
 }
-/*
-echo "page = ".$page."<br/>";
-echo "template = ".$template."<br/>";
-*/
+
 // Tableau de paramètres
 $param = array();
 
@@ -49,21 +61,21 @@ if($page != null){
 // Chargement du template
 $template = $twig->loadTemplate($template);
 
-// Affichage de la page concernée
-// Avec passage d'un tableau de paramètre
-// fournit par les programmes de traitement
-echo $template->render($param);
+if(isset($_SESSION['nom'])){
+    $res = array_merge($_SESSION, $param);
+}
+else{
+    $res = $param;
+}
 
-
+// Affichage de la page concernée Avec passage d'un tableau de paramètre fournit par les programmes de traitement
+echo $template->render($res);
 
 // routage des pages, par défaut index.php
 /*
     $template   = 'index.html.twig';
     $page       = "";
     $param      = array();
-
-    // Démarrage des sessions
-    session_start();
 
 //    $template="";
     // Si une page est demandée
