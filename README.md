@@ -29,3 +29,7 @@ __CONTENU :__
 __A REFLECHIR :__
 > Système de blacklist avec connexion LDAP
 
+__RE FAIRE UN TOUR SUR LE SITE, TOUT VERIFIER__
+
+__UPLOAD SUR LE SERVEUR__ _(demander à Mr.Augier)
+
