@@ -31,5 +31,5 @@ __A REFLECHIR :__
 
 __RE FAIRE UN TOUR SUR LE SITE, TOUT VERIFIER__
 
-__UPLOAD SUR LE SERVEUR__ (demander à Mr.Augier)
+__UPLOAD SUR LE SERVEUR__ _(demander à Mr.Augier)_
 
