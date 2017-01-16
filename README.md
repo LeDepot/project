@@ -1,43 +1,31 @@
-# le Dépot
-
+# LE DEPOT
 ## Projet de Réservation de Matériel pour le DUT MMI de Montbéliard
+### To Do List
 
+__BUGS :__
+> Corriger l'affichage des images sur le site (y en a qui sont pas dans le bon sens)
 
-### vocabulaire git : 
+> Corriger les Session (session_unset)
 
+> Déconnexion admin
 
-__Commit :__ 
-> un commit est un ensemble de modifications apportées et validées. Avec Git on commit d'abord sur son ordinateur, et non sur un serveur.
+__FONCTIONNALITES :__
+> Passer du panier à la réservation : ajouter le contenu panier, lié à son utilisateur, dans la table réservation, puis vider la colonne panier
 
+> Afficher les réservations dans le calendrier (JSON)
 
-__Historique :__ 
-> Permet de retrouver toutes les modifications apportées au projet. Il est construit à partir de la liste des commits  
+> barre de recherche (header) (angular)
 
+> Modifier contenu du panier (utilisateur)
 
-__Repository :__ 
-> C'est le lieu contenant les fichiers du projet, avec tout son historique. Chaque developpeur du projet a son Repository local. Il y a aussi un Repository nommé origin faisant office de serveur.  
+__DESIGN :__
+> remplacer l'icone du panier
 
+> Vérifier responsive
 
-__Remote :__ 
-> c'est un Repository distant, par opposition à son Repository local  
+__CONTENU :__
+> remplir la BDD avec les bons contenus
 
-
-__Rollback :__ 
-> revenir à une version précédente d'un fichier ou d'un projet  
-
-
-__Branche :__ 
-> Une branche permet d'apporter des évolutions en parallèle. Jo travaille sur la branche A, Jack travaille sur la branche B. Jack ne voit pas le travail de Jo, et vice-versa.  
-
-
-__Merger :__ 
-> Mélanger deux évolutions faites en parrallèle. Jo a travaillé, Jack a travaillé. Jack récupère le travail de Jo pour le merger dans son travail. Si ils ont travaillé sur les mêmes fichiers, il y a alors un risque de conflit.  
-
-
-__Push :__ _(pousser)_ 
-> Envoyer ses commits vers un Repository Remote  
-
-
-__Pull :__ _(tirer_) 
-> Récupérer les commits des autres membres de l'équipe depuis le Repository  
+__A REFLECHIR :__
+> Système de blacklist avec connexion LDAP
 
