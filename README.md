@@ -23,6 +23,8 @@ __DESIGN :__
 
 > Vérifier responsive
 
+> Rajouter un "margin-bottom: 50 px" au p desc d'un matériel.
+
 __CONTENU :__
 > remplir la BDD avec les bons contenus
 
