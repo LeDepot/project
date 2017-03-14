@@ -1,14 +1,93 @@
 <?php
+
+require_once('dao/DaoEtudiant.php');
+require_once('dao/DaoMateriel.php');
+require_once('dao/DaoReservation.php');
+
 session_start();
 
-if (!isset($_SESSION['nom']) && $_GET['page'] != "connexion") {
-    // On renvoie vers la page de connexion
+/*=================================
+=            CODE RESA            =
+=================================*/
+
+if(isset($_POST['validresa'])) {
+
+    $user = new DaoEtudiant();
+    $reservation = new DaoReservation();
+
+    $user = $user->findById($_SESSION['id']);
+    $listIdMateriel = $user->PANIER; 
+    /*$listIdMateriel = json_decode($listIdMateriel);
+    $listIdMateriel = implode(',', $listIdMateriel);
+    var_dump($listIdMateriel);die();
+*/
+    // Au click sur le bouton de validation du panier, on crée une nouvelle réservation en BDD
+    
+    $datedebut = $_POST['dateDebut'];
+    $datefin = $_POST['dateDebut'];
+    $datefin = explode('-', $datefin);
+    $jour = $datefin[2];
+    $jour = $datefin[2] + 3;
+    if($jour <= 9) {
+        $jour = '0'.$jour;
+    } else {
+        $jour = $jour;
+    }
+    $datefin = $datefin[0].'-'.$datefin[1].'-'.$jour;
+
+    $nouvelleReservation = new Reservation(
+        array(
+            'DATEDEBUT' => $_POST['dateDebut'],
+            'DATEFIN' => $datefin,
+            'VALIDE' => 0,
+            'ID_MATERIELS' => $listIdMateriel,
+            'ID_PERSONNE' => $_SESSION['id'],
+        )
+    );
+    $reservation->insert($nouvelleReservation);
+
+    // Puis on vide la colonne PANIER de la table étudiant
+    $user = new DaoEtudiant();
+    $userModif = $user->findById($_SESSION['id']);
+    $userModif->PANIER = '';
+    $user->update($userModif);
+
+//    header('Location:index.php');
+}
+
+/*=====  End of CODE RESA  ======*/
+
+if(isset($_POST['suppPanier'])) {
+
+    $user = new DaoEtudiant();
+    $etudiant = $user->findById($_SESSION['id']);
+
+    $panier = json_decode($etudiant->PANIER);
+
+    $key = array_search($_POST['id-materiel'], $panier);
+    array_splice($panier, $key, 1);
+
+    if(!isset($panier)) {
+        $panier = json_encode($panier);
+        $etudiant->PANIER = $panier;
+        $user->update($etudiant);
+    } else {
+        $etudiant->PANIER = '';
+        $user->update($etudiant);
+    }
+
+
+    header('Location: index.php');
+}
+
+if (!isset($_SESSION['nom']) && $_GET['page'] != ("connexion" || "inscription")) {
     header("Location: index.php?page=connexion");
     exit(0);
 }
 
 if (isset($_POST['deconnexion']))
 {
+    session_unset();
     session_destroy();
     header("Location: index.php?page=connexion");
     exit(0);
@@ -71,6 +150,8 @@ else{
 // Affichage de la page concernée Avec passage d'un tableau de paramètre fournit par les programmes de traitement
 echo $template->render($res);
 
+
+
 // routage des pages, par défaut index.php
 /*
     $template   = 'index.html.twig';
@@ -96,3 +177,5 @@ echo $template->render($res);
     // Affichage de la page concernee et paramètres passés
     echo $template->render($param);
 */
+
+

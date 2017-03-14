@@ -2,9 +2,11 @@
 
 require_once('dao/DaoEtudiant.php');
 require_once('dao/DaoMateriel.php');
+require_once('dao/DaoReservation.php');
 
 $user = new DaoEtudiant();
 $materiel = new DaoMateriel();
+$reservation = new DaoReservation();
 
 $user = $user->findById($_GET['id']);
 
@@ -20,4 +22,6 @@ foreach ($listId as $id){
 $panier = json_encode($panier);
 
 echo $panier;
+
+
 

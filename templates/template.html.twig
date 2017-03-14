@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -16,8 +16,8 @@
 <body>
 <header>
     <div class="container">
-        <h1 class="hidden-mobile">MMI Montbéliard</h1>
-        <span class="titre-site">Le Dépôt</span>
+        <h1 class="mobile-right">MMI Montbéliard</h1>
+        <span class="titre-site hidden-mobile">Le Dépôt</span>
         <nav>
             <div class="menu">
                 <span class="bar"></span>
@@ -38,11 +38,11 @@
             <form action="" class="sub-nav-elm search" method="post">
                 {#<input type="text" id="search" class="search-input">#}
                 {#<label for="search" class="search-icon"><i class="fa fa-search"></i></label>#}
-                <button name="deconnexion" id="deconnexion" class="sub-nav-elm deco hidden-mobile">Se déconnecter</button>
-            </form>
-            <button class="sub-nav-elm cart"><i class="fa fa-shopping-cart"></i></button>
+                <button name="deconnexion" id="deconnexion" class="sub-nav-elm deco hidden-mobile"><i class="fa fa-power-off" aria-hidden="true"></i></button>
+            </form><!--
+            --><button class="sub-nav-elm cart"><i class="fa fa-shopping-cart"></i></button><!--
 
-            <span class="sub-nav-elm user-name hidden-mobile">{{ prenom }} {{ nom }}</span>
+            --><span class="sub-nav-elm user-name hidden-mobile">{{ prenom }} {{ nom }}</span>
             <input type="text" value="{{ id }}" class="hidden id_session" style="display: none;"/>
         </div>
     </div>
@@ -59,12 +59,12 @@
                 <h2>Votre Panier</h2>
             </div>
             <div class="content">
-                {#<p class="default">#}
-                    {#Votre panier est vide.#}
-                {#</p>#}
+            
             </div>
             <form action="" method="post">
-                <button name="valid" type="submit">Valider la réservation</button>
+                <label for="dateDebut">Réserver à partir de : </label>
+                <input type="date" name="dateDebut" id="dateDebut" />
+                <button name="validresa" type="submit" class="btn" data-content="Valider la réservation">Valider la réservation</button>
             </form>
         </div>
     </section>

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
@@ -14,8 +14,8 @@
 
 <body style="background-color: #0C2C55;">
 <div class="container-connexion">
-	<h1 class="titre-connexion">Le Dépot</h1>
 	<img src="src/img/logo.png" alt="le dépot" title="Le dépot" class="img-connexion">
+	<h1 class="titre-connexion">Le Dépot</h1>
 	<div class="login">
 		<div class="login-screen">
 			<div class="app-title">
@@ -25,15 +25,14 @@
 				<div class="login-form">
 					<div class="control-group">
 						<input type="text" class="login-field" value="" placeholder="Nom d'utilisateur" name="login" id="login-name">
-						<label class="login-field-icon fui-user" for="login-name"></label>
 					</div>
 
 					<div class="control-group">
 						<input type="password" class="login-field" value="" placeholder="Mot de passe" name="password" id="login-pass">
-						<label class="login-field-icon fui-lock" for="login-pass"></label>
 					</div>
 
-					<button class="btn" name="submit" type="submit" data-content="Connexion"></button>
+					<button class="btn" name="submit" type="submit" data-content="Connexion">Connexion</button>
+					<p>Pas encore de compte ? <a href="index.php?page=inscription">Venez vous inscrire !</a></p>
 					<div class="message">
 						{{ msg }}
 					</div>

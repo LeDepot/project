@@ -47,3 +47,23 @@
 
             @media (max-width: $sm-max)
                 padding: 50px 30px
+
+            .elmName
+                position: relative
+
+                form
+                    position: absolute
+                    top: 50%
+                    +prefixes(transform, translateY(-50%))
+                    right: 20px
+
+                    .hidden
+                        display: none 
+
+                    button 
+                        margin: 0
+                        background: transparent
+
+                        &:hover
+                            color: $pink
+                            cursor: pointer

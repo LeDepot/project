@@ -84,7 +84,7 @@ main
                 flex-wrap: wrap
 
                 .elm
-                    width: 30%
+                    width: 29%
                     height: 500px
                     overflow: hidden
                     margin: 15px
@@ -342,3 +342,53 @@ span.fa-lg
 
     i.fa-stack-1x
         font-size: 2rem
+
+.elmName
+    border-bottom: 1px solid gray
+    padding: 20px
+
+.panier
+    form
+        text-align: center
+
+        button
+            display: block
+            margin: 10px auto
+            margin-bottom: 30px
+            border: none
+            font-size: 1.6rem
+
+.sub-nav-elm.deco
+    font-size: 2rem
+    color: white
+    background: transparent
+    border: none
+    padding: 0 20px
+    +prefixes(transition, all ease 400ms)
+
+    &:hover
+        background: $green
+        color: $blue
+        cursor: pointer
+
+span.titre-site
+    font-family: 'merriweather-extrabold', sans-serif
+    font-weight: normal
+    color: $white
+    padding-right: 20px
+
+.mobile-right
+    @media screen and (max-width: $xs-max)
+        position: absolute
+        right: 0
+        top: 0
+        vertical-align: top
+
+    @media screen and (max-width: 1320px)
+        margin-left: 70px
+
+
+@media screen and (max-width: $xs-max)
+    header
+        .container
+            height: 60px

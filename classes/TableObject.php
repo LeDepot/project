@@ -6,7 +6,7 @@
 class TableObject {
 
     // Liste des champs et leur valeur
-    protected $fields = array();
+    public $fields = array();
     public function getFields() { return $this->fields; }
 
     // Copie des champs reçus (typiquement par un fetch sur la base)

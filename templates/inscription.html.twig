@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Réservation de matériel - MMI Montbéliard</title>
+	<link rel="stylesheet" href="src/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="src/e-calendar/css/jquery.e-calendar.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script type="text/javascript" src="src/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="src/e-calendar/js/jquery.e-calendar.js"></script>
+	<link rel="icon" href="src/img/favicon.png">
+</head>
+
+<body style="background-color: #0C2C55;">
+<div class="container-connexion">
+	<img src="src/img/logo.png" alt="le dépot" title="Le dépot" class="img-connexion">
+	<h1 class="titre-connexion">Le Dépot</h1>
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Inscription</h1>
+			</div>
+			<form method="post">
+				<div class="login-form">
+					<div class="control-group">
+						<input type="text" class="login-field" value="" placeholder="Nom d'utilisateur" name="login" id="login-name">
+					</div>
+
+					<div class="control-group">
+						<input type="password" class="login-field" value="" placeholder="Mot de passe" name="password" id="login-pass">
+					</div>
+
+					<div class="control-group">
+						<input type="password" class="login-field" value="" placeholder="Confirmer mot de passe" name="passwordVerif" id="login-pass">
+					</div>
+
+					<div class="control-group">
+						<input type="text" class="login-field" value="" placeholder="Nom" name="name" id="login-pass">
+					</div>
+
+					<div class="control-group">
+						<input type="text" class="login-field" value="" placeholder="Prénom" name="firstName" id="login-pass">
+					</div>
+
+					<div class="control-group">
+						<input type="text" class="login-field" value="" placeholder="Email" name="mail" id="login-pass">
+					</div>
+
+					<div class="control-group">
+						<input type="text" class="login-field" value="" placeholder="Promo" name="promo" id="login-pass">
+					</div>
+
+					<div class="control-group">
+						<input type="text" class="login-field" value="" placeholder="Groupe" name="groupe" id="login-pass">
+					</div>
+
+					<button class="btn" name="submit" type="submit" data-content="Inscription">Inscription</button>
+					<p>Déja membre ? <a href="index.php?page=connexion">Connectez vous !</a></p>
+
+					<div class="message">
+						{{ msg }}
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>

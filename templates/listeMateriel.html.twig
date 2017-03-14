@@ -1,18 +1,18 @@
 {% extends 'template.html.twig' %}
 
 {% block page %}
-    <a href="index.php?page=ajout" class="btn" data-content="Ajouter">Ajouter</a>
+    <a href="index.php?page=ajout" class="ajoutMatos btn" data-content="Ajouter">Ajouter</a>
 
 <table id="listeMateriel" class="display nowrap" cellspacing="0" width="100%">
     <thead>
     <tr>
         <th>Nom</th>
-        <th>Description</th>
-        <th>Nombre</th>
-        <th>Quantité</th>
-        <th>Statut</th>
-        <th>Catégorie</th>
-        <th>Caution</th>
+        <th class="hidden-mobile">Description</th>
+        <th class="hidden-mobile">Nombre</th>
+        <th class="hidden-mobile">Quantité</th>
+        <th class="hidden-mobile">Statut</th>
+        <th class="hidden-mobile">Catégorie</th>
+        <th class="hidden-mobile">Caution</th>
         <th></th>
         <th></th>
     </tr>
@@ -21,12 +21,12 @@
     <tfoot>
     <tr>
         <th>Nom</th>
-        <th>Description</th>
-        <th>Nombre</th>
-        <th>Quantité</th>
-        <th>Statut</th>
-        <th>Catégorie</th>
-        <th>Caution</th>
+        <th class="hidden-mobile">Description</th>
+        <th class="hidden-mobile">Nombre</th>
+        <th class="hidden-mobile">Quantité</th>
+        <th class="hidden-mobile">Statut</th>
+        <th class="hidden-mobile">Catégorie</th>
+        <th class="hidden-mobile">Caution</th>
         <th></th>
         <th></th>
     </tr>
@@ -36,10 +36,10 @@
     {% for materiel in materiels %}
         <tr>
             <td>{{ materiel.NOM }}</td>
-            <td>{{ materiel.DESCRIPTION }}</td>
-            <td>{{ materiel.NOMBRE }}</td>
-            <td>{{ materiel.QUANTITE }}</td>
-            <td>
+            <td class="hidden-mobile">{{ materiel.DESCRIPTION }}</td>
+            <td class="hidden-mobile">{{ materiel.NOMBRE }}</td>
+            <td class="hidden-mobile">{{ materiel.QUANTITE }}</td>
+            <td class="hidden-mobile">
                 {% if materiel.STATUT == 1 %}
                     Disponnible
                 {% endif %}
@@ -47,7 +47,7 @@
                     Indisponnible
                 {% endif %}
             </td>
-            <td>
+            <td class="hidden-mobile">
                 {% if materiel.ID_CAT == 1 %}
                     Photo
                 {% endif %}
@@ -72,7 +72,7 @@
                     Salles
                 {% endif %}
             </td>
-            <td>{{ materiel.CAUTION }}</td>
+            <td class="hidden-mobile">{{ materiel.CAUTION }}</td>
             <td><a href="index.php?page=modification&id={{ materiel.ID }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
             <td>
                 <form action="" method="POST">

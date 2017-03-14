@@ -8,74 +8,78 @@
     </div>
 
     <form method="post" action="" enctype="multipart/form-data">
-
-        <div class="row">
-            <div class="col-md-12">
+        <div>
+            <div class="left">
                 <div class="form-group">
-                    <label for="nom">Nom:</label>
+                    <label for="nom">Nom :</label>
                     <input type="text" name="nom" class="form-control" id="nom"
-                           value=""/>
+                           value="{{ materiel.NOM }}" />
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Description:</label>
-                    <textarea class="form-control" rows="5" id="description" name="description" cols="5" placeholder="Ex: Appareil photo ... "></textarea>
+                    <label for="description">Description :</label>
+                    <textarea class="form-control" rows="5" id="description" name="description" cols="5" placeholder="Ex: Appareil photo ... ">{{ materiel.DESCRIPTION }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
-                    <label for="image">Image:</label>
-                    <input id="image" name="image" class="input-file" type="file"><br>
-                    <button type="submit" name="Image" class="btn btn-primary btn-sm" data-content="Enregistrer la photo"></button>
-                    <table class="table">
-                    </table>
+                    <label for="nombre">Nombre :</label>
+                    <input type="number" class="form-control" name="nombre" id="nombre"
+                           value="{{ materiel.NOMBRE }}"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="sante">Nombre:</label>
-                    <input type="number" class="form-control" name="sante" id="sante"
-                           value="4"/>
+                    <label for="qte">Quantité :</label>
+                    <input type="number" class="form-control" name="qte" id="qte"
+                           value="{{ materiel.QUANTITE }}"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="sante">Quantité:</label>
-                    <input type="number" class="form-control" name="sante" id="sante"
-                           value="4"/>
-                </div>
-
-                <div class="form-group">
-                    <label for="disponibilite">Statut:</label>
-                    <input type="checkbox" name="disponibilite" id="disponibilite" checked style="margin-left: 10px"/>
-                </div>
-
-                <div class="form-group">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
-                    <label for="pdf">PDF:</label>
-                    <input id="pdf" name="pdf" class="input-file" type="file"><br>
-                    <button type="submit" name="submitImage" class="btn btn-primary btn-sm" data-content="Enregistrer le PDF"></button>
-                    <table class="table">
-                    </table>
-                </div>
-
-                <div class="form-group">
-                    <label for="categorie">Catégorie</label>
-                    <select name="categorie" id="categorie" class="form-control">
-
-                    </select>
+                    <label for="disponibilite">Dispnible :</label>
+                    <input type="checkbox" name="disponibilite" id="disponibilite" {% if materiel.STATUT == 1 %}checked{% endif %} style="margin-left: 10px"/>
                 </div>
 
                 <div class="form-group">
                     <label for="caution">Caution:</label>
                     <input type="text" name="caution" id="caution" class="form-control"
-                           value="1997"/>
+                           value="{{ materiel.CAUTION }}"/>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="form-group">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+                    <label for="image">Image :</label>
+                    <input id="image" name="image" class="input-file" type="file"><br>
+<!--                     <button type="submit" name="submitImage" class="addElm btn btn-primary btn-sm" data-content="Enregistrer la photo"></button>
+                     -->                    <table class="table">
+                    </table>
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" name="submit" class="btn btn-primary btn-lg center-block" data-content="Enregistrer le matériel"></button>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+                    <label for="pdf">PDF :</label>
+                    <input id="pdf" name="pdf" class="input-file" type="file"><br>
+<!--                     <button type="submit" name="submitPDF" class="addElm btn btn-primary btn-sm" data-content="Enregistrer le PDF"></button>
+                     -->                    <table class="table">
+                    </table>
                 </div>
 
+                <div class="form-group">
+                    <label for="categorie">Catégorie : </label>
+                    <select name="categorie" id="categorie" class="form-control">
+                        {% for categorie in categories %}
+                            <option value="{{ categorie.ID }}">{{ categorie.NOM }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
+
+            <div class="form-group center-block">
+                <button type="submit" name="modif" class="btn btn-primary btn-lg" data-content="Ajouter le matériel"></button>
+            </div>
+
         </div>
     </form>
 </div>
 {% endblock %}
+

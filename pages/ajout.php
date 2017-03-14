@@ -15,21 +15,27 @@ $param = array('listeCategories' => $listeCategorie);
 
 $materiel = new DaoMateriel();
 
-if(isset($_POST['submitImage']))
-{
+$image = '';
+$pdf = '';
+
+/*if(isset($_POST['submitImage']))
+{*/
+
+if(isset($_POST["ajouter"])) {
+
     if(isset($_FILES['image']))
     {
-        $dossier = 'src/img/imageMateriel';
+        $dossier = 'src/img/Materiel/';
         $fichier = basename($_FILES['image']['name']);
         $taille_maxi = 10000000;
         $taille = filesize($_FILES['image']['tmp_name']);
         $extensions = array('.png', '.gif', '.jpg', '.jpeg');
         $extension = strrchr($_FILES['image']['name'], '.');
-        $erreur = "";
+        $erreurs = "";
         //Début des vérifications de sécurité...
         if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
         {
-            //$erreurs[] = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg';
+            $erreurs[] = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg';
         }
         if($taille>$taille_maxi)
         {
@@ -41,23 +47,25 @@ if(isset($_POST['submitImage']))
             $fichier = strtr($fichier,
                 'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
                 'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-            $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+            $fichier = preg_replace('/([^.a-z0-9]+)/i', '_', $fichier);
             if(move_uploaded_file($_FILES['image']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
-            {}
+            {
+                $image = $ficher;
+            }
             else //Sinon (la fonction renvoie FALSE).
             {
                 $erreurs[] = "Echec de l'upload ! Réessayez !";
             }
         }
     }
-}
+/*}
+*/
 
-
-if(isset($_POST['submitPDF']))
-{
+/*if(isset($_POST['submitPDF']))
+{*/
     if(isset($_FILES['PDF']))
     {
-        $dossier = '../../pdf';
+        $dossier = 'src/pdf';
         $fichier = basename($_FILES['PDF']['name']);
         $taille_maxi = 10000000;
         $taille = filesize($_FILES['PDF']['tmp_name']);
@@ -81,30 +89,36 @@ if(isset($_POST['submitPDF']))
                 'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
             $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
             if(move_uploaded_file($_FILES['PDF']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
-            {}
+            {
+                $pdf = $ficher;
+            }
             else //Sinon (la fonction renvoie FALSE).
             {
                 $erreurs[] = "Echec de l'upload ! Réessayez !";
             }
         }
     }
-}
+/*}
+*/
+    $dispo = 0;
+    if(isset($_POST["disponibilite"])){
+        $dispo = 1;
+    }
 
-if(isset($_POST["ajouter"])) {
     $nouveauMateriel = new Materiel(
         array(
             'NOM' => $_POST["nom"],
             'DESCRIPTION' => $_POST["description"],
-            'IMAGE' => $_POST["image"],
+            'IMAGE' => $dossier . basename($_FILES['image']['name']),
             'NOMBRE' => $_POST["nombre"],
             'QUANTITE' => $_POST["qte"],
-            'STATUT' => $_POST["disponibilite"],
-            'PDF' => $_POST["pdf"],
+            'STATUT' => $dispo,
+            'PDF' => $dossier . $pdf,
             'ID_CAT' => $_POST["categorie"],
             'CAUTION' => $_POST["caution"],
         )
     );
-    var_dump($nouveauMateriel);die();
+//    var_dump($nouveauMateriel);die();
     $materiel->insert($nouveauMateriel);
 
     header('Location:index.php?page=listeMateriel');

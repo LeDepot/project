@@ -9,9 +9,8 @@
     </div>
 
     <form method="post" action="" enctype="multipart/form-data">
-
-        <div class="row">
-            <div class="col-md-12">
+        <div>
+            <div class="left">
                 <div class="form-group">
                     <label for="nom">Nom :</label>
                     <input type="text" name="nom" class="form-control" id="nom"
@@ -21,15 +20,6 @@
                 <div class="form-group">
                     <label for="description">Description :</label>
                     <textarea class="form-control" rows="5" id="description" name="description" cols="5" placeholder="Ex: Appareil photo ... "></textarea>
-                </div>
-
-                <div class="form-group">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
-                    <label for="image">Image :</label>
-                    <input id="image" name="image" class="input-file" type="file"><br>
-                    <button type="submit" name="submitImage" class="addElm btn btn-primary btn-sm" data-content="Enregistrer la photo"></button>
-                    <table class="table">
-                    </table>
                 </div>
 
                 <div class="form-group">
@@ -50,11 +40,28 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="caution">Caution:</label>
+                    <input type="text" name="caution" id="caution" class="form-control"
+                           value=""/>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="form-group">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+                    <label for="image">Image :</label>
+                    <input id="image" name="image" class="input-file" type="file"><br>
+<!--                     <button type="submit" name="submitImage" class="addElm btn btn-primary btn-sm" data-content="Enregistrer la photo"></button>
+                     -->                    <table class="table">
+                    </table>
+                </div>
+
+                <div class="form-group">
                     <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
                     <label for="pdf">PDF :</label>
                     <input id="pdf" name="pdf" class="input-file" type="file"><br>
-                    <button type="submit" name="submitPDF" class="addElm btn btn-primary btn-sm" data-content="Enregistrer le PDF"></button>
-                    <table class="table">
+<!--                     <button type="submit" name="submitPDF" class="addElm btn btn-primary btn-sm" data-content="Enregistrer le PDF"></button>
+                     -->                    <table class="table">
                     </table>
                 </div>
 
@@ -66,19 +73,13 @@
                         {% endfor %}
                     </select>
                 </div>
-
-                <div class="form-group">
-                    <label for="caution">Caution:</label>
-                    <input type="text" name="caution" id="caution" class="form-control"
-                           value=""/>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" name="ajouter" class="btn btn-primary btn-lg center-block" data-content="Ajouter le matériel"></button>
-                </div>
-
             </div>
+
+            <div class="form-group center-block">
+                <button type="submit" name="ajouter" class="btn btn-primary btn-lg" data-content="Ajouter le matériel"></button>
+            </div>
+
         </div>
     </form>
 </div>
-            {% endblock %}
+{% endblock %}

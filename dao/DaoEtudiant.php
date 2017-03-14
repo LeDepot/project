@@ -28,11 +28,29 @@ class DaoEtudiant extends Dao  {
         return $res;
     }
 
+    function getNonValide()
+    {
+        $res = array();
+        $stmt = $this->pdo->query("SELECT * FROM etudiant WHERE VALIDE=0 ORDER BY nom");
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
+            $res[] = new Etudiant($row);
+        return $res;
+    }
+
+    function getValide()
+    {
+        $res = array();
+        $stmt = $this->pdo->query("SELECT * FROM etudiant WHERE VALIDE=1 ORDER BY nom");
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
+            $res[] = new Etudiant($row);
+        return $res;
+    }
+
     function insert($obj)
     {
         $stmt =  $this->pdo->prepare("
-            INSERT INTO ETUDIANT (NOM, PRENOM, LOGIN, MDP, MAIL, PROMO, GROUPE, BLACKLIST, PANIER)
-            VALUES (:NOM, :PRENOM, :LOGIN, :MDP, :MAIL, :PROMO, :GROUPE, :BLACKLIST, :PANIER)
+            INSERT INTO ETUDIANT (NOM, PRENOM, LOGIN, MDP, MAIL, PROMO, GROUPE, BLACKLIST, PANIER, VALIDE)
+            VALUES (:NOM, :PRENOM, :LOGIN, :MDP, :MAIL, :PROMO, :GROUPE, :BLACKLIST, :PANIER, :VALIDE)
             ");
         $res = $stmt->execute($obj->getFields());
         return $res;
@@ -40,7 +58,7 @@ class DaoEtudiant extends Dao  {
 
     function update($obj)
     {
-        $stmt = $this->pdo->prepare("UPDATE etudiant SET NOM=:NOM, PRENOM=:PRENOM, LOGIN=:LOGIN, MDP=:MDP, MAIL=:MAIL, PROMO=:PROMO, GROUPE=:GROUPE, BLACKLIST=:BLACKLIST, PANIER=:PANIER WHERE ID=:ID");
+        $stmt = $this->pdo->prepare("UPDATE etudiant SET NOM=:NOM, PRENOM=:PRENOM, LOGIN=:LOGIN, MDP=:MDP, MAIL=:MAIL, PROMO=:PROMO, GROUPE=:GROUPE, BLACKLIST=:BLACKLIST, PANIER=:PANIER, VALIDE=:VALIDE WHERE ID=:ID");
         $res = $stmt->execute($obj->getFields());
         return $res;
     }
@@ -48,7 +66,7 @@ class DaoEtudiant extends Dao  {
     // Vérification qu'un couple (login, mdp) est bien dans la base
     // Retourne l'utilisateur trouvé ou null
     public function checkUser($login, $mdp) {
-        $stmt = $this->pdo->prepare("SELECT * FROM etudiant WHERE LOGIN=? AND MDP=? AND BLACKLIST=0");
+        $stmt = $this->pdo->prepare("SELECT * FROM etudiant WHERE LOGIN=? AND MDP=? AND BLACKLIST=0 AND VALIDE=1");
         $stmt->execute(array($login, $mdp));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row === false)

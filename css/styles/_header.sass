@@ -107,7 +107,7 @@ header nav
     height: 100%
     vertical-align: top
 
-    @media (max-width: $sm-max)
+    @media screen and (max-width: 1320px)
         width: 70%
         margin-top: $header-h
 
@@ -171,6 +171,12 @@ header
     nav
         position: relative
 
+        @media screen and (max-width: 1320px)
+            margin-left: -253px
+
+            @media screen and (max-width: $xs-max)
+                margin-left: 0
+
         .menu
             position: absolute
             height: $header-h
@@ -185,6 +191,8 @@ header
                 background:
                     color: $white
 
-            @media (min-width: $md-min)
+            @media screen and (min-width: 1321px)
                 display: none
+
+
 

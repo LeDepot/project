@@ -7,12 +7,10 @@
         <tr>
             <th>Nom</th>
             <th>Prenom</th>
-            <th>Login</th>
-            <th>Mot de passe</th>
-            <th>Mail</th>
-            <th>Promo</th>
-            <th>Groupe</th>
-            <th>Blacklist</th>
+            <th class="hidden-mobile">Mail</th>
+            <th class="hidden-mobile">Promo</th>
+            <th class="hidden-mobile">Groupe</th>
+            <th class="hidden-mobile">Blacklist</th>
             <th></th>
 
         </tr>
@@ -22,12 +20,10 @@
         <tr>
             <th>Nom</th>
             <th>Prenom</th>
-            <th>Login</th>
-            <th>Mot de passe</th>
-            <th>Mail</th>
-            <th>Promo</th>
-            <th>Groupe</th>
-            <th>Blacklist</th>
+            <th class="hidden-mobile">Mail</th>
+            <th class="hidden-mobile">Promo</th>
+            <th class="hidden-mobile">Groupe</th>
+            <th class="hidden-mobile">Blacklist</th>
             <th></th>
         </tr>
         </tfoot>
@@ -37,15 +33,13 @@
             <tr>
                 <td>{{ etudiant.NOM }}</td>
                 <td>{{ etudiant.PRENOM }}</td>
-                <td>{{ etudiant.LOGIN }}</td>
-                <td>{{ etudiant.MDP }}</td>
-                <td>{{ etudiant.MAIL }}</td>
-                <td>{{ etudiant.PROMO }}</td>
-                <td>{{ etudiant.GROUPE }}</td>
-                <td>{{ etudiant.BLACKLIST }}</td>
+                <td class="hidden-mobile">{{ etudiant.MAIL }}</td>
+                <td class="hidden-mobile">{{ etudiant.PROMO }}</td>
+                <td class="hidden-mobile">{{ etudiant.GROUPE }}</td>
+                <td class="hidden-mobile">{{ etudiant.BLACKLIST }}</td>
                 <td>
                     <form action="" method="POST">
-                        <input type="text" class="form-control hidden" value="{{ materiel.ID }}" name="idEtudiant">
+                        <input type="text" class="form-control hidden" value="{{ etudiant.ID }}" name="idEtudiant">
                         {% if etudiant.BLACKLIST == 0 %}
                             <button type="submit" name="blacklist"><i class="fa fa-user-times" aria-hidden="true"></i></button>
                         {% endif %}

@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
         }
         $_SESSION['nom'] = $userPers->NOM;
         $_SESSION['prenom'] = $userPers->PRENOM;
-        $_SESSION['id'] = $userPers->ID;
+        $_SESSION['idAdmin'] = $userPers->ID;
 
         header("Location: index.php");
         exit(0);
