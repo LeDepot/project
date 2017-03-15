@@ -62,7 +62,7 @@
 
         
 
-        var url = 'https://'+window.location.hostname+'/'+window.location.pathname;
+        var url = 'http://'+window.location.hostname+':8080/'+window.location.pathname;
         var url = url.split('index');
         var url = url[0]+'calendar.php';
         var urlCalendar = window.location.search;
@@ -92,6 +92,8 @@
                             dateResa
                         ]);
                     });*/
+                        
+                    var listeResa;
 
                     $.each(reponse, function(key, value) {
                         var dateResa = value.DATE_DEBUT;
@@ -100,70 +102,41 @@
                             month = dateResa[1] - 1, // C DLA MERDE -- mais bon, ça marche
                             day = dateResa[2];
 
+                        var matos = value.MATERIEL,
+                            matos = matos.join(', ');
+
                         dateResa = new Date(year, month, day);
 
-                        if(reponse.length > 1 && key < reponse.length) {
-                            listeResa.push('{title: '+value.DATE_DEBUT+' - '+value.DATE_FIN+' | '+value.PERSONNE+', description: '+value.MATERIEL+', datetime: '+dateResa+'},')
-                        } else {
-                            listeResa.push('{title: '+value.DATE_DEBUT+' - '+value.DATE_FIN+' | '+value.PERSONNE+', description: '+value.MATERIEL+', datetime: '+dateResa+'}')
+                        var resa = {
+                            title: value.PERSONNE,
+                            description: matos,
+                            datetime: new Date(new Date().getFullYear(), new Date().getMonth(), '15')
                         }
-                    })               
 
-                    var events = listeResa;
-                    console.log(events);
-                    // Création du calendrier
-                    // ===================================================
-                    /*$.each(reponse, function(key, value) {
-                        console.log(value);
-                   });
+                        listeResa.push(resa);
 
-                    var events = array(
-                        $.each(reponse, function(key, value) {
-                            var nom = value.DATEDEBUT+' - '+value.DATEFIN+' | '+value.PERSONNE;
-                            desc = value.MATERIEL;
-                            array(
-                                'title': nom,
-                                'description': desc,
-                                'datetime': '2017-03-15'
-                            )
-                        })
-                    );
-*/
-                    //console.log(reponse);
-                    /*var res = [];
-                    $.each(reponse, function(){
-                        res.push(this);
-                    });
 
-/*                    $('#calendar').eCalendar({url: 'loadCalendar'});
-*/
-/* console.log(res);*/
+                    });            
+                    console.log(listeResa);
 
-/*                    $('#calendar').eCalendar({
-                        events: [
-                        ]
-                    });
-*/
                     /*$('#calendar').eCalendar({url: 'loadCalendar',
                         weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                         firstDayOfWeek: 1}); // calendar starting on monday | (0 - 6: week days format)
 */
                     //With links on the description
                     $('#calendar').eCalendar({
-                        events: [ 
+                        /*events: [*/
                             /*{
                                 title: 'test',
-                                description: 'teeeeest',
+                                description: 'bonjour',
                                 datetime: new Date(new Date().getFullYear(), new Date().getMonth(), '15')
                             },
                             {
-                                title: 'test',
-                                description: 'teeeeest',
-                                datetime: new Date(new Date().getFullYear(), new Date().getMonth(), '24')
-                            }*/
-
-                            listeResa
-                        ]
+                                title: 'test2',
+                                description: 'bonjour2',
+                                datetime: new Date(new Date().getFullYear(), new Date().getMonth(), '17')
+                            }  */                    /*]*/
+                        listeResa
                     });
 
                 },
@@ -206,7 +179,7 @@
         // Affichage du panier
         $('.sub-nav-elm.cart').on('click', function() {
             //var url = "https://"+window.location.hostname+":8080"+window.location.pathname;
-            var url = "http://"+window.location.hostname+':8080'+window.location.pathname;
+            var url = "http://"+window.location.hostname+':8080/'+window.location.pathname;
             var url = url.split('index');
             var url = url[0]+"panier.php?id="+$('.id_session').attr('value');
             console.log(url)

@@ -29,7 +29,7 @@ if(isset($_POST["ajouter"])) {
         $fichier = basename($_FILES['image']['name']);
         $taille_maxi = 10000000;
         $taille = filesize($_FILES['image']['tmp_name']);
-        $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+        $extensions = array('.png', '.gif', '.jpg', '.jpeg', '.JPG');
         $extension = strrchr($_FILES['image']['name'], '.');
         $erreurs = "";
         //Début des vérifications de sécurité...
