@@ -110,7 +110,7 @@
                         var resa = {
                             title: value.PERSONNE,
                             description: matos,
-                            datetime: new Date(new Date().getFullYear(), new Date().getMonth(), '15')
+                            datetime: dateResa
                         }
 
                         listeResa.push(resa);
@@ -125,18 +125,7 @@
 */
                     //With links on the description
                     $('#calendar').eCalendar({
-                        /*events: [*/
-                            /*{
-                                title: 'test',
-                                description: 'bonjour',
-                                datetime: new Date(new Date().getFullYear(), new Date().getMonth(), '15')
-                            },
-                            {
-                                title: 'test2',
-                                description: 'bonjour2',
-                                datetime: new Date(new Date().getFullYear(), new Date().getMonth(), '17')
-                            }  */                    /*]*/
-                        listeResa
+                        events: listeResa
                     });
 
                 },
