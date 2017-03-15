@@ -99,16 +99,36 @@
                         var dateResa = value.DATE_DEBUT;
                         dateResa = dateResa.split('-');
                         var year = dateResa[0],
-                            month = dateResa[1] - 1, // C DLA MERDE -- mais bon, ça marche
+                            month = dateResa[1] - 1,
                             day = dateResa[2];
+
+                        function lpad(value, length, pad) {
+                            if (typeof pad == 'undefined') {
+                                pad = '0';
+                            }
+                            var p;
+                            for (var i = 0; i < length; i++) {
+                                p += pad;
+                            }
+                            return (p + value).slice(-length);
+                        }
+
+                        var dateFin = value.DATE_FIN;
+                        dateFin = dateFin.split('-');
+                        var yearF = dateFin[0],
+                            monthF = dateFin[1] - 1,
+                            dayF = dateFin[2];
 
                         var matos = value.MATERIEL,
                             matos = matos.join(', ');
 
                         dateResa = new Date(year, month, day);
+                        dateFin = new Date(yearF, monthF, dayF);
+
+
 
                         var resa = {
-                            title: value.PERSONNE,
+                            title: ' - '+ lpad(dateFin.getDate(), 2) + '/' + lpad(dateFin.getMonth() + 1, 2)+' | '+value.PERSONNE,
                             description: matos,
                             datetime: dateResa
                         }
